@@ -251,8 +251,8 @@ header{
 /* change background on scroll */
 .navbar-cng{
     background-color: #fff;
-    -webkit-box-shadow: 0px 4px 5px 0px rgba(48, 48, 48, 0.2);
-            box-shadow: 0px 4px 5px 0px rgba(48, 48, 48, 0.2);
+    -webkit-box-shadow: 0 4px 5px 0 rgba(48, 48, 48, 0.2);
+            box-shadow: 0 4px 5px 0px rgba(48, 48, 48, 0.2);
     -webkit-transition: var(--trans);
     -o-transition: var(--trans);
     transition: var(--trans);
@@ -481,7 +481,7 @@ footer .site-brand{
 .footer-item:nth-child(3) a{
     display: inline-block;
     font-size: 1rem;
-    opacity: 0.9%;
+    /*opacity: 0.9%;*/
 }
 
 

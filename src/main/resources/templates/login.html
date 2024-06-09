@@ -1,25 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/common::head}">
+
 </head>
 <body>
-<div th:replace="~{fragments/common.html}"></div>
-<div class="container">
-    <h2>Login</h2>
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username">
+<!-- navbar  -->
+<nav th:replace="~{fragments/common::navbar}"></nav>
+<!-- end of navbar  -->
+
+
+<!-- header -->
+<header class = "flex header-sm">
+    <div class = "container">
+        <div class = "header-title">
+            <h1>Login</h1>
+            <div class="container">
+
+                <form th:action="@{/users/login}" method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p>Don't have an account? <a th:href="@{/users/register}">Register here</a>.</p>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <p>Don't have an account? <a th:href="@{/register}">Register here</a>.</p>
-</div>
+    </div>
+</header>
+<!-- header -->
+
+
+
+
+
+<!-- footer -->
+<footer  th:replace="~{fragments/common::footer}"></footer>
+<!-- end of footer -->
+
+<!-- js -->
+<script src = "/static/js/script.js"></script>
+<script src = "/js/script.js"></script>
+
+
+<script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
 </body>
 </html>

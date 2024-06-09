@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html   lang="en" xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
+        xmlns:th="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/common::head}">
 </head>
 <body>
@@ -30,10 +30,10 @@
 
         <div class="about-row">
             <div class="about-left my-2">
-                <img src="../static/images/about-img.jpg" alt="about img">
+                <img src="/images/about-img.jpg" alt="about img">
             </div>
             <div class="about-right">
-                <h2>15 Years of Experience</h2>
+                <h2>How We Started </h2>
                 <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae vitae sed aperiam qui
                     repudiandae earum voluptatem. Modi at inventore omnis veniam necessitatibus exercitationem vel
                     nesciunt delectus ex officiis, culpa doloremque odit illo saepe placeat. Delectus consequuntur
@@ -51,40 +51,40 @@
 <section id="facts" class="py-4 flex">
     <div class="container">
         <div class='title-wrap'>
-            <span class="sm-title">know some facts about our agency</span>
-            <h2 class="lg-title">fun facts</h2>
+            <span class="sm-title">Businesses you can find on our Website</span>
+<!--            <h2 class="lg-title">Businesses you can find</h2>-->
         </div>
 
         <div class="facts-row">
             <div class="facts-item">
-                <span class="fas fa-camera-retro facts-icon"></span>
+                <span >   <i class="fa-solid fa-icons  facts-icon "></i></span>
                 <div class="facts-info">
-                    <strong>1220</strong>
-                    <p class="text">photos taken</p>
+                    <strong>220</strong>
+                    <p class="text">Clubs and Bars</p>
                 </div>
             </div>
 
             <div class="facts-item">
-                <span class="fas fa-umbrella-beach  facts-icon"></span>
+                <span> <i class="fa-solid fa-spa facts-icon"></i></span>
                 <div class="facts-info">
                     <strong>450</strong>
-                    <p class="text">beaches visited</p>
+                    <p class="text">Beauty and Spa Boutiques</p>
                 </div>
             </div>
 
             <div class="facts-item">
-                <span class="fas fa-mountain facts-icon"></span>
+                <span >  <i class="fa-solid fa-tractor facts-icon"></i></span>
                 <div class="facts-info">
-                    <strong>84</strong>
-                    <p class="text">mountains climbed</p>
+                    <strong>144</strong>
+                    <p class="text">Local Farms</p>
                 </div>
             </div>
 
             <div class="facts-item">
-                <span class="fas fa-ship facts-icon"></span>
+                <span > <i class="fa-solid fa-utensils  facts-icon"></i>></span>
                 <div class="facts-info">
                     <strong>120</strong>
-                    <p class="text">cruises organized</p>
+                    <p class="text">Restaurants</p>
                 </div>
             </div>
         </div>
@@ -97,8 +97,8 @@
 <!-- end of footer -->
 
 <!-- js -->
-<script src="../static/js/script.js"></script>
-<script>
+<script src = "/js/script.js"></script>
+<script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
 
 </script>
 </body>

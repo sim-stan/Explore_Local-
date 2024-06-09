@@ -120,8 +120,7 @@
         margin: 0;
     }
     .nav-item{
-        margin: 0;
-        margin-left: 2rem;
+        margin: 0 0 0 2rem;
     }
     /* change on scroll */
     .navbar-cng .navbar-nav .nav-link{
