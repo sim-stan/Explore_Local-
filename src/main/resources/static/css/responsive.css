@@ -78,7 +78,7 @@
 }
 @media screen and (min-width: 992px){
     .header-title h1{
-        font-size: 4rem;
+        font-size: 2rem;
     }
     .header-form form{
         -webkit-box-orient: horizontal;

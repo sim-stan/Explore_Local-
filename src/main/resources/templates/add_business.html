@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html  lang="en" xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common::head}">
 
 </head>
@@ -11,43 +11,88 @@
 
 
 <!-- header -->
-        <header class = "flex header-sm">
-            <div class = "container">
-                <div class = "header-title">
-                    <h1>Add Your Business</h1>
-                    <div class="container">
+<header class="flex header-sm">
+    <div class="container">
+        <div class="header-title">
+            <h1>Add Your Business</h1>
+            <div class="container">
 
-                        <form th:action="@{/users/login}" method="post">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </form>
-                        <p>Don't have an account? <a th:href="@{/users/register}">Register here</a>.</p>
+                <form th:action="@{/users/login}" method="post">
+                    <div class="form-group">
+                        <label for="businessName">Business Name</label>
+                        <input
+
+
+                                type="text"
+                                class="form-control"
+                                id="businessName"
+                                name="businessName">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="category"
+                                name="category">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="businessPhoneNumber">Phone Number</label>
+                        <input
+
+                                type="text"
+                                class="form-control"
+                                id="businessPhoneNumber"
+                                name="businessPhoneNumber">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="businessAddress">Business Address</label>
+                        <input
+
+                                class="form-control"
+                                id="businessAddress"
+                                name="businessAddress">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="aboutTheBusinessStory">About your Business</label>
+                        <textarea
+
+                                class="form-control"
+                                id="aboutTheBusinessStory"
+                                name="aboutTheBusinessStory"></textarea>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Business</button>
+                </form>
+                <p></p>
             </div>
-        </header>
-        <!-- header -->
+        </div>
+    </div>
+</header>
+<!-- header -->
 
 
+<!-- footer -->
+<footer th:replace="~{fragments/common::footer}"></footer>
+<!-- end of footer -->
+
+<!-- js -->
+<script src="/static/js/script.js"></script>
+<script src="/js/script.js"></script>
 
 
-
-        <!-- footer -->
-        <footer  th:replace="~{fragments/common::footer}"></footer>
-        <!-- end of footer -->
-
-        <!-- js -->
-        <script src = "/static/js/script.js"></script>
-        <script src = "/js/script.js"></script>
-
-
-        <script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
-    </body>
+<script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
+</body>
 </html>
