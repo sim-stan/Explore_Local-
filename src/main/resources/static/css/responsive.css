@@ -80,6 +80,9 @@
     .header-title h1{
         font-size: 2rem;
     }
+    .header-title #header-index{
+        font-size: 3rem;
+    }
     .header-form form{
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;

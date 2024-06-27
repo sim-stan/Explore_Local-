@@ -27,7 +27,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// stop transition and animatino during window resizing
+// stop transition and animation during window resizing
 let resizeTimer;
 window.addEventListener('resize', () => {
     document.body.classList.add("resize-animation-stopper");

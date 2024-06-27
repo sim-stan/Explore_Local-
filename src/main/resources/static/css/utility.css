@@ -38,7 +38,7 @@ button, input[type = "submit"]{
     line-height: 1.6;
     letter-spacing: 1px;
 }
-.form-control{
+.form-control {
     width: 100%;
     margin: 0.6rem 0;
     max-width: 500px;
@@ -51,6 +51,16 @@ button, input[type = "submit"]{
     background-color: transparent;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+}
+
+ #category{
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background-color: transparent;
+    text-align: center;
+     color: black;
+
 }
 .btn{
     padding: 0.7rem 2.4rem;
@@ -110,4 +120,96 @@ img{
 .shadow:hover{
     -webkit-box-shadow: 0px 0px 18px -4px rgba(109, 109, 109, 0.64);
             box-shadow: 0px 0px 18px -4px rgba(109, 109, 109, 0.64);
+}
+
+
+
+/*Select for Category*/
+
+
+.select {
+    display:flex;
+    flex-direction: column;
+    position:relative;
+    width:350px;
+    height:100px;
+}
+
+.option {
+    padding:0 30px 0 10px;
+    min-height:40px;
+    display:flex;
+    align-items:center;
+    background:transparent;
+    border-top:#fff solid 1px;
+    position:absolute;
+    top:0;
+    width: 100%;
+    pointer-events:none;
+    order:2;
+    z-index:1;
+    transition:background .4s ease-in-out;
+    box-sizing:border-box;
+    overflow:hidden;
+    white-space:nowrap;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    color: white;
+
+}
+
+.option:hover {
+    background:var(--green);
+}
+
+.select:focus .option {
+    position:relative;
+    pointer-events:all;
+}
+
+input {
+    opacity:1;
+    position:absolute;
+    left:99px;
+}
+
+input:checked + label {
+    order: 2;
+    z-index:2;
+
+    background:var(--green);
+    border-top:none;
+    position:relative;
+}
+
+input:checked + label:after {
+    content:'';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    position:absolute;
+    right:10px;
+    top:calc(50% - 2.5px);
+    pointer-events:none;
+    z-index:3;
+}
+
+input:checked + label:before {
+    position:absolute;
+    right:0;
+    height: 40px;
+    width: 40px;
+    content: '';
+    background:transparent;
+}
+
+@media screen and (max-width: 600px) {
+    .select {
+        width:90%;
+    }
+
+
 }
