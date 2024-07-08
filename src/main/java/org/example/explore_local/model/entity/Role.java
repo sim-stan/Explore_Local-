@@ -2,7 +2,7 @@ package org.example.explore_local.model.entity;
 
 
 import jakarta.persistence.*;
-import org.example.explore_local.model.enums.UserRoles;
+import org.example.explore_local.model.enums.RoleName;
 
 @Entity
 @Table(name = "roles")
@@ -13,7 +13,7 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(unique = true)
-    private UserRoles name;
+    private RoleName name;
 
     public Role() {}
 
@@ -25,11 +25,11 @@ public class Role {
         this.id = id;
     }
 
-    public UserRoles getName() {
+    public RoleName getName() {
         return name;
     }
 
-    public void setName(UserRoles name) {
+    public void setName(RoleName name) {
         this.name = name;
     }
 }

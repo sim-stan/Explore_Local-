@@ -17,12 +17,13 @@
             <h1>Register</h1>
             <div class="container">
 
-                <form th:action="@{/users/login}" method="post">
+                <form th:action="@{/users/register}"
+                      th:method="post"
+                      th:object="${userRegisterBindingModel}">
+
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input
-
-
+                        <input th:field="*{username}"
                                 type="text"
                                 class="form-control"
                                 id="username"
@@ -31,10 +32,9 @@
 <!--                        <small id="usernameUniqueError" class=" bg-danger rounded">Username is already occupied</small>-->
                     </div>
                     <div class="form-group">
-                        <label for="password">Full Name</label>
+                        <label for="fullname">Full Name</label>
                         <input
-
-
+                                th:field="*{fullName}"
                                 type="text"
                                 class="form-control"
                                 id="fullname"
@@ -45,8 +45,9 @@
 <!--                                                <small th:if="${#fields.hasErrors('fullname')}"> Some custom errors</small>-->
                     </div>
                     <div class="form-group">
-                        <label for="password">Email</label>
+                        <label for="email">Email</label>
                         <input
+                                th:field="*{email}"
                                type="email"
                                class="form-control"
                                id="email"
@@ -58,7 +59,7 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input
-
+                               th:field="*{password}"
                                type="password"
                                class="form-control"
                                id="password"
@@ -71,7 +72,8 @@
                     <div class="form-group">
                         <label for="password">Confirm Password</label>
                     <input
-                            required minlength="5" maxlength="20"
+                            th:field="*{confirmPassword}"
+                            required minlength="4" maxlength="20"
                             type="password"
                             class="form-control"
                             id="confirmPassword"

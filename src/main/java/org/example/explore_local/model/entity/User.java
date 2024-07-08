@@ -27,6 +27,9 @@ public class User implements Serializable {
     @Column(name = "full_name")
     private String fullName;
 
+    @Column
+    private boolean isActive;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
@@ -53,7 +56,7 @@ public class User implements Serializable {
 
     public User(long id, String username,
                 String password, String email,
-                String fullName, List<Review> reviews,
+                String fullName, boolean isActive, List<Review> reviews,
                 List<Picture> pictures, List<Role> roles,
                 List<Business> ownedBusinesses) {
         this.id = id;
@@ -61,6 +64,7 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.fullName = fullName;
+        this.isActive = isActive;
         this.reviews = reviews;
         this.pictures = pictures;
         this.roles = roles;
@@ -144,6 +148,15 @@ public class User implements Serializable {
 
     public User setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+        return this;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public User setActive(boolean active) {
+        isActive = active;
         return this;
     }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html    lang="en" xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:th="http://www.thymeleaf.org">
+         xmlns:th="http://www.thymeleaf.org"
+         xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/common::head}">
 
 </head>
@@ -13,6 +14,9 @@
 <header class = "flex">
     <div class = "container">
         <div class = "header-title">
+            <h1 id="header-title">Welcome  <th:block sec:authorize="isAuthenticated()">
+            <th:block sec:authentication="name"></th:block>
+            </th:block></h1>
             <h1 id="header-index">Explore The Best Places Around You</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus rerum maxime enim odit illum in molestias beatae doloremque, ratione optio.</p>
         </div>

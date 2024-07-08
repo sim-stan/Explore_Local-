@@ -4,6 +4,8 @@ package org.example.explore_local.model.entity;
 import jakarta.persistence.*;
 import org.example.explore_local.model.enums.CategoryName;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -14,8 +16,8 @@ public class Category {
     @Column(nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     private CategoryName categoryName;
-
-    //TODO more fields!!!
+    @OneToMany(mappedBy = "category")
+    private List<Business> businesses;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -47,6 +49,15 @@ public class Category {
 
     public Category setCategoryName(CategoryName categoryName) {
         this.categoryName = categoryName;
+        return this;
+    }
+
+    public List<Business> getBusinesses() {
+        return businesses;
+    }
+
+    public Category setBusinesses(List<Business> businesses) {
+        this.businesses = businesses;
         return this;
     }
 }
