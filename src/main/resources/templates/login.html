@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html  lang="en" xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common::head}">
 
 </head>
@@ -11,13 +11,16 @@
 
 
 <!-- header -->
-<header class = "flex header-sm">
-    <div class = "container">
-        <div class = "header-title">
+<header class="flex header-sm">
+    <div class="container">
+        <div class="header-title">
             <h1>Login</h1>
             <div class="container">
 
-                <form th:action="@{/users/login}" th:method="post">
+                <form th:action="@{/users/login}" method="POST">
+<!--                    <div class="alert alert-danger" th:if="${bad_credentials}"-->
+<!--                         th:text="Invalid username or password"></div>-->
+
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username">
@@ -36,16 +39,13 @@
 <!-- header -->
 
 
-
-
-
 <!-- footer -->
-<footer  th:replace="~{fragments/common::footer}"></footer>
+<footer th:replace="~{fragments/common::footer}"></footer>
 <!-- end of footer -->
 
 <!-- js -->
-<script src = "/static/js/script.js"></script>
-<script src = "/js/script.js"></script>
+<script src="/static/js/script.js"></script>
+<script src="/js/script.js"></script>
 
 
 <script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>

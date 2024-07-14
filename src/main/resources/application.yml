@@ -14,8 +14,8 @@ spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: "jdbc:mysql://localhost:3306/Explore_Local?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
-        username: root
-        password: "1234"
+        username: ${db_username}
+        password: ${db_password}
     thymeleaf: # Thymeleaf
         cache: false
         mode: HTML
@@ -26,6 +26,11 @@ spring:
             static-locations: file:src/main/resources/static/
             cache:
                 period: 0
+
+
+explore_local:
+    default.admin.pass: ${DEFAULT_ADMIN_PASS:1234}
+    remember.me.key: ${REMEMBER_ME_KEY:1234}
 
 logging:
     level:

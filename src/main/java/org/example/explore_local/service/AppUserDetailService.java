@@ -1,7 +1,5 @@
 package org.example.explore_local.service;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import org.example.explore_local.model.entity.Role;
 import org.example.explore_local.model.entity.User;
 import org.example.explore_local.repository.UserRepository;
@@ -14,14 +12,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class LoginDetailsService implements UserDetailsService {
+public class AppUserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final HttpServletResponse response;
 
-    public LoginDetailsService(UserRepository userRepository, HttpServletResponse response) {
+
+    public AppUserDetailService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.response = response;
+
     }
 
     @Override
@@ -29,7 +27,7 @@ public class LoginDetailsService implements UserDetailsService {
         Optional<User> user = userRepository.findByUsername(username);
 
         return user
-                .map(LoginDetailsService::map)
+                .map(AppUserDetailService::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username: " + username + " not found"));
 
         //        Cookie cookie = new Cookie("jwt", jwtService.generateToken(user.get()));
@@ -42,7 +40,7 @@ public class LoginDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                user.getRoles().stream().map(LoginDetailsService::map).collect(Collectors.toList())
+                user.getRoles().stream().map(AppUserDetailService::map).collect(Collectors.toList())
         );
     }
 

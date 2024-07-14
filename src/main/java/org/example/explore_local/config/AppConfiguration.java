@@ -1,8 +1,7 @@
 package org.example.explore_local.config;
 
-import jakarta.servlet.http.HttpServletResponse;
 import org.example.explore_local.repository.UserRepository;
-import org.example.explore_local.service.LoginDetailsService;
+import org.example.explore_local.service.AppUserDetailService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +23,7 @@ public class AppConfiguration {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository,  HttpServletResponse response) {
-        return new LoginDetailsService( userRepository, response);
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
+        return new AppUserDetailService( userRepository);
     }
 }

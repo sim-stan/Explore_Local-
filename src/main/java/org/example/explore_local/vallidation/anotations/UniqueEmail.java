@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = { UniqueEmailValidator.class })
 public @interface UniqueEmail {
 
-    String message() default "{user.username.unique}";
+    String message() default "{user.email.unique}";
 
     Class<?>[] groups() default { };
 

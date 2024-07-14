@@ -783,5 +783,7 @@ header.header-sm{
 }
 
 #logout{
-    background: transparent;
+    display: inherit;
+
+    position: relative;
 }
