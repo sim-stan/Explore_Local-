@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/common::head}">
+
+</head>
+<body>
+<!-- navbar  -->
+<nav th:replace="~{fragments/common::navbar}"></nav>
+<!-- end of navbar  -->
+
+
+<!-- header -->
+<header class="flex header-sm">
+    <div class="container">
+        <div class="header-title">
+            <h1>Profile</h1>
+
+            <section id="about" class="py-4">
+                <div class="container">
+                    <div class="about-row">
+                        <div class="about-left my-2">
+                            <img src="/images/about-img.jpg" alt="about img">
+                        </div>
+                        <div class="about-right"
+
+                             th:href="@{/users/profile/{username}(username=${userProfile.username})}">
+                            <h2 th:text="'Username : ' + ${userProfile.username}"></h2>
+                            <div class="form-group">
+<!--                            <span th:text="${userProfileViewModel.username}"></span>-->
+                            </div>
+                            <h2 class="mt-4 mb-0" th:text="'Full name : ' + ${userProfile.fullName}"></h2>
+                            <div class="form-group">
+<!--                            <span th:text="${userProfileViewModel.fullName}"></span>-->
+                            </div>
+                            <h2 class="mt-2 mb-0"  th:text="'Email : ' + ${userProfile.email}"> </h2>
+                            <div class="form-group">
+<!--                            <span th:text="${userProfileViewModel.email}"></span>-->
+                            </div>
+
+                            <a
+                                    th:href="@{/users/edit-profile/{username}(username = *{userProfile.username})}"
+                                    type="submit" class="btn btn-primary">Edit Profile</a>
+
+                            <a th:method="GET"
+                               th:href="@{/}"
+                               th:text="Back"
+                               type="submit" class="btn btn-primary">Back
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+<!--            <main class="p-5 align-content-center bg-blur my-register-div">-->
+<!--                <div class="container mt-5">-->
+<!--                    <div class="row d-flex justify-content-center">-->
+<!--                        <div class="col-md-7">-->
+<!--                            <div class="profile-card p-3 py-4">-->
+<!--                                <div class="text-center"><img src="/static/images/test-2.jpg" width="100"-->
+<!--                                                              class="rounded-circle"></div>-->
+<!--                                <div class="text-center mt-3">-->
+<!--                        <span th:text="${userEditProfileDTO.username}"-->
+<!--                              class="bg-secondary p-1 px-4 rounded text-white">Pro</span>-->
+<!--                                    <h5 class="mt-4 mb-0">Full name</h5>-->
+<!--                                    <span th:text="${userEditProfileDTO.fullName}"></span>-->
+<!--                                    <h5 class="mt-2 mb-0">Email</h5>-->
+<!--                                    <span th:text="${userEditProfileDTO.email}"></span>-->
+<!--                                    <button type="submit" class="btn btn-primary" th:href="@{/users/edit-profile}">Edit Profile</button>-->
+<!--                                    <div class="buttons">-->
+<!--                                        <a th:href="@{/}"-->
+<!--                                           th:text="Back"-->
+<!--                                           class="btn btn-outline-primary px-4">-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </main>-->
+        </div>
+    </div>
+</header>
+<!-- header -->
+
+
+<!-- footer -->
+<footer th:replace="~{fragments/common::footer}"></footer>
+<!-- end of footer -->
+
+<!-- js -->
+<script src="/static/js/script.js"></script>
+<script src="/js/script.js"></script>
+
+
+<script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
+</body>
+</html>
