@@ -27,14 +27,12 @@ public class User implements Serializable {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column
-    private boolean isActive;
+
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Picture> pictures;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -42,31 +40,29 @@ public class User implements Serializable {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
+
     private List<Role> roles;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner" ,fetch = FetchType.EAGER)
     private List<Business> ownedBusinesses;
 
     public User() {
         this.roles = new ArrayList<>();
         this.reviews =new ArrayList<>();
-        this.pictures=new ArrayList<>();
         this.ownedBusinesses=new ArrayList<>();
     }
 
     public User(long id, String username,
                 String password, String email,
-                String fullName, boolean isActive, List<Review> reviews,
-                List<Picture> pictures, List<Role> roles,
+                String fullName,List<Review> reviews,
+                 List<Role> roles,
                 List<Business> ownedBusinesses) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
-        this.isActive = isActive;
         this.reviews = reviews;
-        this.pictures = pictures;
         this.roles = roles;
         this.ownedBusinesses = ownedBusinesses;
     }
@@ -142,21 +138,21 @@ public class User implements Serializable {
         return this;
     }
 
-    public List<Picture> getPictures() {
-        return pictures;
-    }
 
-    public User setPictures(List<Picture> pictures) {
-        this.pictures = pictures;
-        return this;
-    }
 
-    public boolean isActive() {
-        return isActive;
-    }
 
-    public User setActive(boolean active) {
-        isActive = active;
-        return this;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", reviews=" + reviews +
+                ", roles=" + roles +
+                ", ownedBusinesses=" + ownedBusinesses +
+                '}';
     }
 }

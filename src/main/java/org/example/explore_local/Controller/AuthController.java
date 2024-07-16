@@ -16,8 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
-
 @Controller
 @RequestMapping("/users")
 public class AuthController {
@@ -95,23 +93,13 @@ public class AuthController {
 
     }
 
-    @GetMapping("/profile/{username}")
+    @GetMapping("/profile")
 
-    public String viewProfile(@PathVariable String username, Model model,
-                          @AuthenticationPrincipal UserDetails userDetails) {
+    public String viewProfile(Model model,
+                              @AuthenticationPrincipal UserDetails userDetails) {
 
-
-        if (username == null) {
-            return "redirect:/";
-        }
-        if (isValidUser(username)) {
-            if (userService.isAuthorizedForUser(userDetails, username)) {
-                model.addAttribute("isAuthorized", true);
-            }
-            model.addAttribute("isAuthorized", true);
-            UserProfileViewModel profileView = userService.getProfileView();
-            model.addAttribute("userProfile", profileView);
-        }
+        UserProfileViewModel profileView = userService.getProfileView();
+        model.addAttribute("userProfile", profileView);
 
         return "profile";
     }
@@ -120,7 +108,7 @@ public class AuthController {
     @GetMapping("/edit-profile/{username}")
     public String viewEditProfile(@PathVariable String username,
                                   Model model,
-                                  Principal principal,
+                                  RedirectAttributes redirectAttributes,
                                   @AuthenticationPrincipal UserDetails userDetails) {
 
         if (username == null) {
@@ -132,7 +120,7 @@ public class AuthController {
         if (isValidUser(username)) {
             if (model.asMap().size() == 1) {
                 UserEditProfileDTO profileEditDTO = userService.getUserAndMapToProfileEditDTO(username);
-                model.addAttribute("profileEditDTO", profileEditDTO);
+                redirectAttributes.addFlashAttribute("profileEditDTO", profileEditDTO);
             }
         }
         return "edit-profile";
@@ -174,7 +162,7 @@ public class AuthController {
 
     private void checkIfAuthorized(UserDetails userDetails, String username) {
         if (!userService.isAuthorizedForUser(userDetails, username)) {
-            throw new RuntimeException ("Access denied ");
+            throw new RuntimeException("Access denied ");
         }
     }
 }

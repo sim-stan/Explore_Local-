@@ -17,10 +17,10 @@
             <h1>Add Your Business</h1>
             <div class="container">
 
-                <form th:action="@{/users/login}" method="post">
+                <form th:action="@{/businesses/add-business}" method="post" th:object="${businessRegister}">
                     <div class="form-group">
                         <label for="businessName">Business Name</label>
-                        <input
+                        <input  th:field="*{name}"
 
 
                                 type="text"
@@ -35,7 +35,7 @@
 
                         <label for="category">Category</label>
 
-                        <div class="select " tabindex="1" id="category">
+                        <div th:field="*{category}" class="select " tabindex="1" id="category">
                             <input class="selectopt btn btn-primary" name="test" type="radio" id="option1" checked />
                             <label for="option1" class="option ">Choose Category</label>
                             <input class="selectopt " name="test" type="radio" id="option2" />
@@ -73,7 +73,7 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input
+                        <input  th:field="*{email}"
                                 type="email"
                                 class="form-control"
                                 id="email"
@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label for="businessPhoneNumber">Phone Number</label>
                         <input
-
+                                th:field="*{phoneNumber}"
                                 type="text"
                                 class="form-control"
                                 id="businessPhoneNumber"
@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="businessAddress">Business Address</label>
-                        <input
+                        <input   th:field="*{address}"
 
                                 class="form-control"
                                 id="businessAddress"
@@ -102,7 +102,7 @@
                     <div class="form-group">
                         <label for="aboutTheBusinessStory">About your Business</label>
                         <textarea
-
+                                th:field="*{about}"
                                 class="form-control"
                                 id="aboutTheBusinessStory"
                                 name="aboutTheBusinessStory"></textarea>

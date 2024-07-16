@@ -50,7 +50,7 @@ public class UserService {
             throw new RuntimeException("Username is taken");
         }
         user.setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword()));
-        user.setActive(false);
+
         user.getRoles().add(roleService.findByName(RoleName.USER));
         userRepository.save(user);
     }
@@ -77,8 +77,9 @@ public class UserService {
     }
 
     public UserProfileViewModel getProfileView(){
-
+        System.out.println(userHelperService.getUser());
         return modelMapper.map(userHelperService.getUser(),UserProfileViewModel.class);
+
     }
 
 
