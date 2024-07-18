@@ -4,8 +4,10 @@ import jakarta.validation.Valid;
 import org.example.explore_local.model.dtos.UserEditProfileDTO;
 import org.example.explore_local.model.dtos.UserLoginBindingModel;
 import org.example.explore_local.model.dtos.UserRegisterBindingModel;
+import org.example.explore_local.model.entity.User;
 import org.example.explore_local.model.view.UserProfileViewModel;
 import org.example.explore_local.repository.UserRepository;
+import org.example.explore_local.service.UserHelperService;
 import org.example.explore_local.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,10 +25,12 @@ public class AuthController {
 
     private final UserService userService;
     private final UserRepository userRepository;
+    private final UserHelperService userHelperService;
 
-    public AuthController(UserService userService, UserRepository userRepository) {
+    public AuthController(UserService userService, UserRepository userRepository, UserHelperService userHelperService) {
         this.userService = userService;
         this.userRepository = userRepository;
+        this.userHelperService = userHelperService;
     }
 
 
@@ -95,9 +99,12 @@ public class AuthController {
 
     @GetMapping("/profile")
 
-    public String viewProfile(Model model,
+    public String viewProfile(Model model,RedirectAttributes redirectAttributes,
                               @AuthenticationPrincipal UserDetails userDetails) {
 
+        User user=userHelperService.getUser();
+
+        redirectAttributes.addFlashAttribute("userProfile",user);
         UserProfileViewModel profileView = userService.getProfileView();
         model.addAttribute("userProfile", profileView);
 
