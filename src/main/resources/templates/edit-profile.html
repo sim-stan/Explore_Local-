@@ -17,8 +17,8 @@
             <h1>Edit Profile</h1>
             <div class="container">
 
-                <form th:action="@{/users/edit-profile}"
-                      th:method="post"
+                <form th:action="@{/users/edit-profile/{username}(username=${username})}"
+                      th:method="POST"
                       th:object="${profileEditDTO}">
 
                     <div class="form-group">
@@ -82,13 +82,17 @@
                         <!--                                                            Passwords should match.-->
                         <!--                                                        </small>-->
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button
+                            type="submit" class="btn btn-primary">Save</button>
 
                     <a th:method="GET"
                             th:href="@{/}"
                             th:text="Back"
                             type="submit" class="btn btn-primary">Back
                     </a>
+
+                    <button
+                            type="submit" class="btn btn-primary">Delete Account</button>
                 </form>
 
 

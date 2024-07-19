@@ -3,19 +3,18 @@ package org.example.explore_local.model.dtos;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.example.explore_local.vallidation.anotations.PasswordMatch;
-import org.example.explore_local.vallidation.anotations.UniqueEmail;
-import org.example.explore_local.vallidation.anotations.UniqueUsername;
-@PasswordMatch(
-         password= "password",
-        confirmPassword = "confirmPassword"
+import org.example.explore_local.vallidation.anotations.ValidNewEmailAndUsername;
+
+@ValidNewEmailAndUsername(
+        email = "email",
+        id = "id",
+        username = "username"
 )
 public class UserEditProfileDTO {
 
 
     private Long id;
     @NotNull
-    @UniqueUsername
     @Size(min = 2, message = "{user.username.length}")
     private String username;
 
@@ -24,7 +23,6 @@ public class UserEditProfileDTO {
     private String fullName;
 
     @NotNull
-    @UniqueEmail
     @Email(regexp = ".+[@].+", message = "{user.email}")
     private String email;
 
@@ -79,6 +77,10 @@ public class UserEditProfileDTO {
     }
 
 
+    public UserEditProfileDTO setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+        return this;
+    }
 
     public Long getId() {
         return id;
@@ -89,8 +91,4 @@ public class UserEditProfileDTO {
         return this;
     }
 
-    public UserEditProfileDTO setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-        return this;
-    }
-}
+ }

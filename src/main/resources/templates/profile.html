@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
@@ -9,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/profile.css">
+
 </head>
 <body>
 <!-- navbar  -->
@@ -33,20 +33,18 @@
                                              class="rounded-circle" alt="profile_picture"></div>
                                     <div class="text-center mt-3">
 
-                                        <h5 class="mt-2 mb-0" th:text="'Full name: ' +  ${userProfile.fullName}"></h5>
+                                        <h1 class="mt-2 mb-0"  th:text="'Full name: '+  ${userProfile.fullName}"></h1>
 
-                                        <h5 class="mt-2 mb-0" th:text="'Username: ' + ${userProfile.username}"></h5>
+                                        <h1 class="mt-2 mb-0" th:text="'Username: ' + ${userProfile.username}"></h1>
 
-                                        <h5 class="mt-2 mb-0" th:text="'Email: ' + ${userProfile.email}">Email</h5>
+                                        <h1 class="mt-2 mb-0" th:text="'Email: ' + ${userProfile.email}">Email</h1>
 
 
                                         <div class="text-right mt-3">
                                             <a th:href="@{/users/edit-profile/{username}(username = *{userProfile.username})}"
                                                type="submit" class="btn btn-primary">Edit Profile</a>
 
-                                            <a th:method="GET"
-                                               th:href="@{/}"
-                                               th:text="Back"
+                                            <a  th:href="@{/}"
                                                type="submit" class="btn btn-primary">Back
                                             </a>
                                         </div>

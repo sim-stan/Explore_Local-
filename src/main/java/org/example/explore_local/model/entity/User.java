@@ -28,10 +28,8 @@ public class User implements Serializable {
     private String fullName;
 
 
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "author", cascade = CascadeType.ALL)
     private List<Review> reviews;
-
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -43,19 +41,19 @@ public class User implements Serializable {
 
     private List<Role> roles;
 
-    @OneToMany(mappedBy = "owner" ,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Business> ownedBusinesses;
 
     public User() {
         this.roles = new ArrayList<>();
-        this.reviews =new ArrayList<>();
-        this.ownedBusinesses=new ArrayList<>();
+        this.reviews = new ArrayList<>();
+        this.ownedBusinesses = new ArrayList<>();
     }
 
     public User(long id, String username,
                 String password, String email,
-                String fullName,List<Review> reviews,
-                 List<Role> roles,
+                String fullName, List<Review> reviews,
+                List<Role> roles,
                 List<Business> ownedBusinesses) {
         this.id = id;
         this.username = username;
@@ -139,20 +137,33 @@ public class User implements Serializable {
     }
 
 
-
-
-
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", reviews=" + reviews +
-                ", roles=" + roles +
-                ", ownedBusinesses=" + ownedBusinesses +
-                '}';
+
+        if (getOwnedBusinesses().isEmpty()) {
+            return
+                    "User{" +
+                            "id=" + id +
+                            ", username='" + username + '\'' +
+                            ", password='" + password + '\'' +
+                            ", email='" + email + '\'' +
+                            ", fullName='" + fullName + '\'' +
+                            ", reviews=" + reviews +
+                            ", roles=" + roles +
+                            ", ownedBusinesses=" + 0 +
+                            '}';
+        } else {
+            return
+                    "User{" +
+                            "id=" + id +
+                            ", username='" + username + '\'' +
+                            ", password='" + password + '\'' +
+                            ", email='" + email + '\'' +
+                            ", fullName='" + fullName + '\'' +
+                            ", reviews=" + reviews +
+                            ", roles=" + roles +
+                            ", ownedBusinesses=" + ownedBusinesses +
+                            '}';
+        }
     }
 }

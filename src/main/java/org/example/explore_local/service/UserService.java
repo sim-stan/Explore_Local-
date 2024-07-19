@@ -94,15 +94,14 @@ public class UserService {
     }
 
     public void editProfile(UserEditProfileDTO userEditProfileDTO) {
-        Optional<User> userOptional = userRepository.findById(userEditProfileDTO.getId());
+        Optional<User> userOptional = userRepository.findById(userHelperService.getUser().getId());
         if (userOptional.isPresent()) {
             User user = userOptional.get();
 
             user.setUsername(userEditProfileDTO.getUsername());
             user.setEmail(userEditProfileDTO.getEmail());
             user.setFullName(userEditProfileDTO.getFullName());
-            user.setPassword(userEditProfileDTO.getPassword());
-            user.setPassword(userEditProfileDTO.getConfirmPassword());
+            user.setPassword(passwordEncoder.encode(userEditProfileDTO.getPassword()));
             userRepository.save(user);
         }
 

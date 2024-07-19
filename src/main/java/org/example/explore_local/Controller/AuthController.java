@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import org.example.explore_local.model.dtos.UserEditProfileDTO;
 import org.example.explore_local.model.dtos.UserLoginBindingModel;
 import org.example.explore_local.model.dtos.UserRegisterBindingModel;
-import org.example.explore_local.model.entity.User;
 import org.example.explore_local.model.view.UserProfileViewModel;
 import org.example.explore_local.repository.UserRepository;
 import org.example.explore_local.service.UserHelperService;
@@ -102,11 +101,9 @@ public class AuthController {
     public String viewProfile(Model model,RedirectAttributes redirectAttributes,
                               @AuthenticationPrincipal UserDetails userDetails) {
 
-        User user=userHelperService.getUser();
 
-        redirectAttributes.addFlashAttribute("userProfile",user);
-        UserProfileViewModel profileView = userService.getProfileView();
-        model.addAttribute("userProfile", profileView);
+            UserProfileViewModel profileView = userService.getProfileView();
+            model.addAttribute("userProfile", profileView);
 
         return "profile";
     }
@@ -115,7 +112,7 @@ public class AuthController {
     @GetMapping("/edit-profile/{username}")
     public String viewEditProfile(@PathVariable String username,
                                   Model model,
-                                  RedirectAttributes redirectAttributes,
+
                                   @AuthenticationPrincipal UserDetails userDetails) {
 
         if (username == null) {
@@ -125,10 +122,10 @@ public class AuthController {
         checkIfAuthorized(userDetails, username);
 
         if (isValidUser(username)) {
-            if (model.asMap().size() == 1) {
+
                 UserEditProfileDTO profileEditDTO = userService.getUserAndMapToProfileEditDTO(username);
-                redirectAttributes.addFlashAttribute("profileEditDTO", profileEditDTO);
-            }
+                model.addAttribute("profileEditDTO", profileEditDTO);
+
         }
         return "edit-profile";
     }
@@ -149,7 +146,7 @@ public class AuthController {
             }
             userService.editProfile(userEditProfileDTO);
         }
-        return "redirect:/users/profile/" + username;
+        return "redirect:/";
     }
 
 
