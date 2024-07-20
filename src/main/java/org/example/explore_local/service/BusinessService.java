@@ -79,8 +79,12 @@ public class BusinessService {
 
 
     //    @Transactional
-    public void deleteBusiness(long id) {
+    public void deleteBusinessById(long id) {
         businessRepository.deleteById(id);
+    }
+
+    public void deleteBusiness(Business business) {
+        businessRepository.delete(business);
     }
 
     public BusinessProfileViewModel getProfileView(long id) {

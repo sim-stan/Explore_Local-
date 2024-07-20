@@ -78,7 +78,7 @@ public class BusinessController {
     public String deleteBusiness(@PathVariable("id") long id,
                          @AuthenticationPrincipal UserDetails principal) {
 
-        businessService.deleteBusiness(id);
+        businessService.deleteBusinessById(id);
 
         return "redirect:/";
     }

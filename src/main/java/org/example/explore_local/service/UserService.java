@@ -27,15 +27,17 @@ public class UserService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
+    private final BusinessService businessService;
     private final UserHelperService userHelperService;
     private final UserDetailsService userDetailsService;
 
 
-    public UserService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, UserHelperService userHelperService, UserDetailsService userDetailsService) {
+    public UserService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, BusinessService businessService, UserHelperService userHelperService, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
+        this.businessService = businessService;
         this.userHelperService = userHelperService;
         this.userDetailsService = userDetailsService;
     }
@@ -71,18 +73,16 @@ public class UserService {
 
     }
 
-    public UserEditProfileDTO getProfileData(){
+    public UserEditProfileDTO getProfileData() {
 
-        return modelMapper.map(userHelperService.getUser(),UserEditProfileDTO.class);
+        return modelMapper.map(userHelperService.getUser(), UserEditProfileDTO.class);
     }
 
-    public UserProfileViewModel getProfileView(){
+    public UserProfileViewModel getProfileView() {
         System.out.println(userHelperService.getUser());
-        return modelMapper.map(userHelperService.getUser(),UserProfileViewModel.class);
+        return modelMapper.map(userHelperService.getUser(), UserProfileViewModel.class);
 
     }
-
-
 
 
     public boolean isUniqueEmail(String email) {
@@ -107,6 +107,16 @@ public class UserService {
 
     }
 
+    public void deleteUser(long id) {
+        userRepository.findById(id).ifPresent(user -> {
+                        user.getOwnedBusinesses().
+                        forEach(businessService::deleteBusiness);
+                        userRepository.delete(user);
+        });
+
+
+    }
+
 
     public boolean isAuthorizedForUser(UserDetails userDetails, String username) {
         return !userDetails.getAuthorities().
@@ -124,7 +134,7 @@ public class UserService {
 
     public UserEditProfileDTO getUserAndMapToProfileEditDTO(String username) {
 
-       User user=userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User with username: " + username + " not found", username));
-         return modelMapper.map(user,UserEditProfileDTO.class);
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User with username: " + username + " not found", username));
+        return modelMapper.map(user, UserEditProfileDTO.class);
     }
 }
