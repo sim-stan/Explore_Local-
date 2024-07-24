@@ -38,7 +38,6 @@ public class User implements Serializable {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
-
     private List<Role> roles;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
@@ -139,31 +138,15 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-
-        if (getOwnedBusinesses().isEmpty()) {
-            return
-                    "User{" +
-                            "id=" + id +
-                            ", username='" + username + '\'' +
-                            ", password='" + password + '\'' +
-                            ", email='" + email + '\'' +
-                            ", fullName='" + fullName + '\'' +
-                            ", reviews=" + reviews +
-                            ", roles=" + roles +
-                            ", ownedBusinesses=" + 0 +
-                            '}';
-        } else {
-            return
-                    "User{" +
-                            "id=" + id +
-                            ", username='" + username + '\'' +
-                            ", password='" + password + '\'' +
-                            ", email='" + email + '\'' +
-                            ", fullName='" + fullName + '\'' +
-                            ", reviews=" + reviews +
-                            ", roles=" + roles +
-                            ", ownedBusinesses=" + ownedBusinesses +
-                            '}';
-        }
+        return "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" +( password !=null ? "N/A" : "[PROVIDED]") + '\'' +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", reviews=" + reviews.size() +
+                ", roles=" + roles +
+                ", ownedBusinesses=" + ownedBusinesses.size() +
+                '}';
     }
+
 }

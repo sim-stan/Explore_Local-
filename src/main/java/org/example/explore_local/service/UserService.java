@@ -54,6 +54,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword()));
 
         user.getRoles().add(roleService.findByName(RoleName.USER));
+
         userRepository.save(user);
     }
 

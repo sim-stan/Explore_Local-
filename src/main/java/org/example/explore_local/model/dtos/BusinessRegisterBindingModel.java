@@ -2,6 +2,7 @@ package org.example.explore_local.model.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import org.example.explore_local.model.entity.Category;
+import org.example.explore_local.model.entity.City;
 import org.example.explore_local.vallidation.anotations.UniqueBusinessName;
 import org.example.explore_local.vallidation.anotations.UniqueEmail;
 
@@ -28,6 +29,18 @@ public class BusinessRegisterBindingModel {
     @NotBlank
     private String address;
 
+
+    @NotBlank
+    private City city;
+
+    public City getCity() {
+        return city;
+    }
+
+    public BusinessRegisterBindingModel setCity(City city) {
+        this.city = city;
+        return this;
+    }
 
     @NotBlank
     private String about;

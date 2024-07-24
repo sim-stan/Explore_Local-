@@ -15,6 +15,9 @@ public class Role {
     @Column(unique = true)
     private RoleName name;
 
+    @ManyToOne()
+    private User userId;
+
     public Role() {}
 
     public long getId() {

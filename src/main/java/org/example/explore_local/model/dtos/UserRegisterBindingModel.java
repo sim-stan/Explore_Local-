@@ -2,7 +2,6 @@ package org.example.explore_local.model.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import org.example.explore_local.vallidation.anotations.UniqueEmail;
 import org.example.explore_local.vallidation.anotations.UniqueUsername;
@@ -76,5 +75,14 @@ public class UserRegisterBindingModel {
     public UserRegisterBindingModel setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRegisterBindingModel{" +
+                "username='" + username + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

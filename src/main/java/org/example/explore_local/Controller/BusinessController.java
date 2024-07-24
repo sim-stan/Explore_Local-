@@ -82,4 +82,9 @@ public class BusinessController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/all")
+    public String viewAllBusiness(){
+        return "view_businesses";
+    }
 }

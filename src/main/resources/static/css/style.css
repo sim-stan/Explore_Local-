@@ -616,6 +616,8 @@ header.header-sm{
     -webkit-transition: var(--trans);
     -o-transition: var(--trans);
     transition: var(--trans);
+    padding-bottom: 1rem;
+
 }
 .popular-item::after{
     content: "";

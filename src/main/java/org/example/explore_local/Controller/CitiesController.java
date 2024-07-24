@@ -10,4 +10,6 @@ public class CitiesController {
     public String allCities(){
         return "cities";
     }
+
+
 }

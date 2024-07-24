@@ -35,8 +35,13 @@ public class Business {
     private String address;
 
 
+    @ManyToOne
+    private City city;
+
+
     @Column(nullable = false)
     private String about;
+    private String profilePicture;
 
     @ManyToOne
     private User owner;
@@ -56,8 +61,8 @@ public class Business {
     }
 
     public Business(long id, String name, Category category,
-                    String email, String phoneNumber, String address,
-                    String about, User owner, List<Review> reviews,
+                    String email, String phoneNumber, String address, City city,
+                    String about, String profilePicture, User owner, List<Review> reviews,
                     List<Picture> pictures, long likes) {
         this.id = id;
         this.name = name;
@@ -65,7 +70,9 @@ public class Business {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.city = city;
         this.about = about;
+        this.profilePicture = profilePicture;
         this.owner = owner;
         this.reviews = reviews;
         this.pictures = pictures;
@@ -168,6 +175,24 @@ public class Business {
 
     public Business setLikes(long likes) {
         this.likes = likes;
+        return this;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public Business setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+        return this;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public Business setCity(City city) {
+        this.city = city;
         return this;
     }
 }
