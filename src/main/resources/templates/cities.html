@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common::head}">
-    <link rel = "stylesheet" href = "/css/card-style.css">
+
 </head>
 <body>
 <!-- navbar  -->
@@ -10,176 +10,51 @@
 <!-- end of navbar  -->
 
 <!-- header -->
-<header class = "flex header-sm">
-    <div class = "container">
-        <div class = "header-title h-25">
+<header class="flex header-sm">
+    <div class="container">
+        <div class="header-title h-25">
             <h1>All Cities</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus rerum maxime enim odit illum in molestias beatae doloremque, ratione optio.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus rerum maxime enim odit illum in molestias
+                beatae doloremque, ratione optio.</p>
         </div>
     </div>
 </header>
-<!-- header -->
 
 
+<section id="featured" class="py-4">
+    <div class="container" id="all-businesses" th:each="city:${allCities}" th:object="${city}">
 
-<!--&lt;!&ndash; img modal &ndash;&gt;-->
-<!--<div id = "img-modal-box">-->
-<!--    <div id = "img-modal">-->
-<!--        <button type = "button" id = "modal-close-btn" class = "flex">-->
-<!--            <i class = "fas fa-times"></i>-->
-<!--        </button>-->
-<!--        <button type = "button" id = "prev-btn" class = "flex">-->
-<!--            <i class = "fas fa-chevron-left"></i>-->
-<!--        </button>-->
-<!--        <button type = "button" id = "next-btn" class = "flex">-->
-<!--            <i class = "fas fa-chevron-right"></i>-->
-<!--        </button>-->
-<!--        <img src = "/images/gallery-1.jpg">-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; end of img modal &ndash;&gt;-->
-
-<!-- popular places section -->
-
-
-    <section id = "featured" class = "py-4">
-        <div class = "container" id="all-businesses" >
-
-            <div class = "featured-row">
-                <div class = "featured-item my-2 shadow">
-                    <img src = "/images/featured-reo-de-janeiro-brazil.jpg" alt = "featured place">
-                    <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Reo De Janeiro, Brazil
+        <div class="featured-row">
+            <div class="featured-item my-2 shadow">
+                <img src="/images/featured-reo-de-janeiro-brazil.jpg" alt="featured place">
+                <div class="featured-item-content">
+                            <span th:text="*{name}">
+                                <i class="fas fa-map-marker-alt"></i>
                             </span>
-                        <div>
-                            <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "featured-item my-2 shadow">
-                    <img src = "/images/featured-north-bondi-australia.jpg" alt = "featured place">
-                    <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                North Bondi, Australia
+                    <span th:text="*{businessesCount}">
+                                <i class="fa-solid fa-globe"></i>
                             </span>
-                        <div>
-                            <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "featured-item my-2 shadow">
-                    <img src = "/images/featured-berlin-germany.jpg" alt = "featured place">
-                    <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Berlin, Germany
-                            </span>
-                        <div>
-                            <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "featured-item my-2 shadow">
-                    <img src = "/images/featured-khwaeng-wat-arun-thailand.jpg" alt = "featured place">
-                    <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Khwaeng wat arun, thailand
-                            </span>
-                        <div>
-                            <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "featured-item my-2 shadow">
-                    <img src = "/images/featured-rome-italy.jpg" alt = "featured place">
-                    <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Rome, Italy
-                            </span>
-                        <div>
-                            <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class = "featured-item my-2 shadow">
-                    <img src = "/images/featured-fuvahmulah-maldives.jpg" alt = "featured place">
-                    <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                fuvahmulah, maldives
-                            </span>
-                        <div>
-                            <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                        </div>
+                    <div>
+                        <p class="text" th:text="*{about}">Lorem ipsum, dolor sit amet consectetur adipisicing
+                            elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
                     </div>
                 </div>
             </div>
+
+
         </div>
-    </section>
+    </div>
+</section>
 <!-- end of popular places section -->
 
 
-<footer  th:replace="~{fragments/common::footer}"></footer>
+<footer th:replace="~{fragments/common::footer}"></footer>
 
 <!-- js -->
-<script src = "/js/script.js"></script>
-<script>
-    // image modal
-    const allGalleryItem = document.querySelectorAll('.gallery-item');
-    const imgModalDiv = document.getElementById('img-modal-box');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    let imgIndex = 0;
-
-    allGalleryItem.forEach((galleryItem) => {
-        galleryItem.addEventListener('click', () => {
-            imgModalDiv.style.display = "block";
-            let imgSrc = galleryItem.querySelector('img').src;
-            imgIndex = parseInt(imgSrc.split("-")[1].substring(0, 1));
-            showImageContent(imgIndex);
-        })
-    });
-
-    // next click
-    nextBtn.addEventListener('click', () => {
-        imgIndex++;
-        if(imgIndex > allGalleryItem.length){
-            imgIndex = 1;
-        }
-        showImageContent(imgIndex);
-    });
-
-    // previous click
-    prevBtn.addEventListener('click', () => {
-        imgIndex--;
-        if(imgIndex <= 0){
-            imgIndex = allGalleryItem.length;
-        }
-        showImageContent(imgIndex);
-    });
-
-    function showImageContent(index){
-        imgModalDiv.querySelector('#img-modal img').src = `images/gallery-${index}.jpg`;
-    }
-
-    modalCloseBtn.addEventListener('click', () => {
-        imgModalDiv.style.display = "none";
-    })
-</script>
+<script src="/js/script.js"></script>
 <!-- js -->
 
-<script src = "/js/script.js"></script>
+<script src="/js/script.js"></script>
 <script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
 </body>
 </html>

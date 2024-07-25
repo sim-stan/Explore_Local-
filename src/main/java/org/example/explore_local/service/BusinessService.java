@@ -6,6 +6,7 @@ import org.example.explore_local.model.entity.User;
 import org.example.explore_local.model.enums.RoleName;
 import org.example.explore_local.model.view.BusinessProfileViewModel;
 import org.example.explore_local.repository.BusinessRepository;
+import org.example.explore_local.repository.CityRepository;
 import org.example.explore_local.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,13 +19,15 @@ public class BusinessService {
 
     private final BusinessRepository businessRepository;
     private final UserRepository userRepository;
+    private final CityRepository cityRepository;
     private final RoleService roleService;
 
     private final ModelMapper modelMapper;
 
-    public BusinessService(BusinessRepository businessRepository, UserRepository userRepository, RoleService roleService, ModelMapper modelMapper) {
+    public BusinessService(BusinessRepository businessRepository, UserRepository userRepository, CityRepository cityRepository, RoleService roleService, ModelMapper modelMapper) {
         this.businessRepository = businessRepository;
         this.userRepository = userRepository;
+        this.cityRepository = cityRepository;
         this.roleService = roleService;
 
         this.modelMapper = modelMapper;
@@ -46,7 +49,7 @@ public class BusinessService {
         user.getRoles().add(roleService.findByName(RoleName.BUSINESS_OWNER));
         business.setOwner(user);
 
-
+        cityRepository.save(business.getCity());
         userRepository.save(user);
         businessRepository.save(business);
 

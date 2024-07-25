@@ -20,64 +20,64 @@
                 <form th:action="@{/businesses/add-business}" method="post" th:object="${businessRegister}">
                     <div class="form-group">
                         <label for="businessName">Business Name</label>
-                        <input  th:field="*{name}"
+                        <input th:field="*{name}"
 
 
-                                type="text"
-                                class="form-control"
-                                id="businessName"
-                                name="businessName">
+                               type="text"
+                               class="form-control"
+                               id="businessName"
+                               name="businessName">
                     </div>
 
                     <!--------------Add options for category,check classes to match the css---------->
 
-<!--                    <div class="form-group bg-transparent">-->
+                    <!--                    <div class="form-group bg-transparent">-->
 
-<!--                        <label for="category">Category</label>-->
+                    <!--                        <label for="category">Category</label>-->
 
-                        <div th:field="*{category}" class="select " tabindex="1" id="category">
-                            <input class="selectopt btn btn-primary" name="test" type="radio" id="option1" checked />
-                            <label for="option1" class="option ">Choose Category</label>
-                            <input class="selectopt " name="test" type="radio" id="option2" />
-                            <label for="option2" class="option f">Shopping</label>
-                            <input class="selectopt" name="test" type="radio" id="option3" />
-                            <label for="option3" class="option">Restaurants</label>
-                            <input class="selectopt" name="test" type="radio" id="option4" />
-                            <label for="option4" class="option">NightLife</label>
-                            <input class="selectopt" name="test" type="radio" id="option6" />
-                            <label for="option6" class="option">Local Farms</label>
-                            <input class="selectopt" name="test" type="radio" id="option7" />
-                            <label for="option7" class="option">Home Services</label>
-                            <input class="selectopt" name="test" type="radio" id="option8" />
-                            <label for="option8" class="option">Beauty And Spa</label>
-                            <input class="selectopt" name="test" type="radio" id="option9" />
-                            <label for="option9" class="option">Automotive</label>
-                        </div>
+                    <div th:field="*{category}" class="select " tabindex="1" id="category">
+                        <input class="selectopt btn btn-primary" name="test" type="radio" id="option1" checked/>
+                        <label for="option1" class="option ">Choose Category</label>
+                        <input class="selectopt " name="test" type="radio" id="option2"/>
+                        <label for="option2" class="option f">Shopping</label>
+                        <input class="selectopt" name="test" type="radio" id="option3"/>
+                        <label for="option3" class="option">Restaurants</label>
+                        <input class="selectopt" name="test" type="radio" id="option4"/>
+                        <label for="option4" class="option">NightLife</label>
+                        <input class="selectopt" name="test" type="radio" id="option6"/>
+                        <label for="option6" class="option">Local Farms</label>
+                        <input class="selectopt" name="test" type="radio" id="option7"/>
+                        <label for="option7" class="option">Home Services</label>
+                        <input class="selectopt" name="test" type="radio" id="option8"/>
+                        <label for="option8" class="option">Beauty And Spa</label>
+                        <input class="selectopt" name="test" type="radio" id="option9"/>
+                        <label for="option9" class="option">Automotive</label>
+                    </div>
 
-<!--                        <select class="form-control form-select form-select-sm " aria-label="Default select example"-->
-<!--                                id="category" name="category">-->
-<!--                            <option class="form-control" selected>Select category</option>-->
-<!--                            <option class="form-control" value="SHOPPING">Shopping</option>-->
-<!--                            <option class="form-control" value="RESTAURANTS">Restaurants</option>-->
-<!--                            <option class="form-control" value="NIGHTLIFE">NightLife</option>-->
-<!--                            <option class="form-control" value="LOCAL_FARMS">Local Farms</option>-->
-<!--                            <option class="form-control" value="BEAUTY_SPA">Beauty and Spa</option>-->
-<!--                            <option class="form-control" value="AUTOMOTIVE">Automotive</option>-->
-<!--                            <option class="form-control" value="HOME_SERVICES">Home Services</option>-->
-<!--                        </select>-->
+                    <!--                        <select class="form-control form-select form-select-sm " aria-label="Default select example"-->
+                    <!--                                id="category" name="category">-->
+                    <!--                            <option class="form-control" selected>Select category</option>-->
+                    <!--                            <option class="form-control" value="SHOPPING">Shopping</option>-->
+                    <!--                            <option class="form-control" value="RESTAURANTS">Restaurants</option>-->
+                    <!--                            <option class="form-control" value="NIGHTLIFE">NightLife</option>-->
+                    <!--                            <option class="form-control" value="LOCAL_FARMS">Local Farms</option>-->
+                    <!--                            <option class="form-control" value="BEAUTY_SPA">Beauty and Spa</option>-->
+                    <!--                            <option class="form-control" value="AUTOMOTIVE">Automotive</option>-->
+                    <!--                            <option class="form-control" value="HOME_SERVICES">Home Services</option>-->
+                    <!--                        </select>-->
 
 
-                        <!--                        <small  th:if="${#fields.hasErrors('category')}" th:errors="" class="text-danger">Category error message</small>-->
-<!--                    </div>-->
+                    <!--                        <small  th:if="${#fields.hasErrors('category')}" th:errors="" class="text-danger">Category error message</small>-->
+                    <!--                    </div>-->
 
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input  th:field="*{email}"
-                                type="email"
-                                class="form-control"
-                                id="email"
-                                name="email">
+                        <input th:field="*{email}"
+                               type="email"
+                               class="form-control"
+                               id="email"
+                               name="email">
 
                     </div>
                     <div class="form-group">
@@ -92,22 +92,43 @@
                     </div>
                     <div class="form-group">
                         <label for="businessAddress">Street Address</label>
-                        <input   th:field="*{address}"
+                        <input th:field="*{address}"
 
-                                class="form-control"
-                                id="businessAddress"
-                                name="businessAddress">
+                               class="form-control"
+                               id="businessAddress"
+                               name="businessAddress">
 
                     </div>
+
                     <div class="form-group">
-                        <label for="city">City</label>
-                        <textarea
-                                th:field="*{city}"
-                                class="form-control"
-                                id="city"
-                                name="businessAddress"></textarea>
+                        <label for="businessAddress">City</label>
+                        <input th:field="*{city}"
+
+                               class="form-control"
+                               id="city"
+                               name="city">
 
                     </div>
+
+<!--                    <div class="select" th:each="city : ${cities}">-->
+<!--                        <input class="select btn btn-primary" name="test" type="radio" id="option5" checked/>-->
+<!--                        <label for="option" class="option ">Choose City</label>-->
+<!--                        <label for="option2" class="option f" th:text="${city.name}"></label>-->
+<!--                            <input th:value="*{city.name}"-->
+<!--                                    th:field="*{city.name}"-->
+<!--                            class="selectopt " name="test" type="radio" id="option"/>-->
+<!--                    </div>-->
+
+
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="city">City</label>-->
+                    <!--                        <textarea-->
+                    <!--                                th:field="*{city}"-->
+                    <!--                                class="form-control"-->
+                    <!--                                id="city"-->
+                    <!--                                name="businessAddress"></textarea>-->
+
+                    <!--                    </div>-->
                     <div class="form-group">
                         <label for="aboutTheBusinessStory">About your Business</label>
                         <textarea

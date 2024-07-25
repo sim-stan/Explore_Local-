@@ -17,6 +17,9 @@ public class City {
     private List<Business> businesses;
 
 
+    private String about;
+
+
     public City() {
         this.businesses=new ArrayList<>();
     }
@@ -54,4 +57,27 @@ public class City {
         this.businesses = businesses;
         return this;
     }
+
+    public int businessesCount(){
+
+                if(getBusinesses().isEmpty()){
+                    return 0;
+                }else {
+                    return getBusinesses().size();
+                }
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public City setAbout(String about) {
+        this.about = about;
+        return this;
+    }
+    public City addBusinesses(Business businesses) {
+        this.businesses .add(businesses);
+        return this;
+    }
+
 }

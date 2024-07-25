@@ -5,6 +5,7 @@ import org.example.explore_local.model.dtos.BusinessEditProfileDTO;
 import org.example.explore_local.model.dtos.BusinessRegisterBindingModel;
 import org.example.explore_local.model.view.BusinessProfileViewModel;
 import org.example.explore_local.service.BusinessService;
+import org.example.explore_local.service.CitiesService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,9 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BusinessController {
 
     private final BusinessService businessService;
+    private final CitiesService citiesService;
 
-    public BusinessController(BusinessService businessService) {
+    public BusinessController(BusinessService businessService, CitiesService citiesService) {
         this.businessService = businessService;
+        this.citiesService = citiesService;
     }
 
     @ModelAttribute("businessRegister")
@@ -35,7 +38,9 @@ public class BusinessController {
     }
 
     @GetMapping("/add-business")
-    public String addBusiness() {
+    public String addBusiness(Model model) {
+
+        model.addAttribute("cities",citiesService.getAllCitiesViewModels());
         return "add_business";
     }
 
