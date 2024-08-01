@@ -11,6 +11,7 @@ import org.example.explore_local.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -20,20 +21,20 @@ public class BusinessService {
     private final BusinessRepository businessRepository;
     private final UserRepository userRepository;
     private final CityRepository cityRepository;
-    private final RoleService roleService;
+
 
     private final ModelMapper modelMapper;
 
-    public BusinessService(BusinessRepository businessRepository, UserRepository userRepository, CityRepository cityRepository, RoleService roleService, ModelMapper modelMapper) {
+    public BusinessService(BusinessRepository businessRepository, UserRepository userRepository, CityRepository cityRepository, ModelMapper modelMapper) {
         this.businessRepository = businessRepository;
         this.userRepository = userRepository;
         this.cityRepository = cityRepository;
-        this.roleService = roleService;
+
 
         this.modelMapper = modelMapper;
     }
 
-
+    @Transactional
     public long addBusiness(BusinessRegisterBindingModel businessRegisterBindingModel, UserDetails businessOwner) {
 
         Business business = this.modelMapper.map(businessRegisterBindingModel, Business.class);
@@ -46,8 +47,13 @@ public class BusinessService {
         } else if (!isUniqueName(business.getName())) {
             throw new RuntimeException("Business Name is taken");
         }
-        user.getRoles().add(roleService.findByName(RoleName.BUSINESS_OWNER));
+        user.getRoles().add(RoleName.BUSINESS_OWNER);
+        user.getOwnedBusinesses().add(business);
         business.setOwner(user);
+
+
+        System.out.println(business.getCity().getName());
+
 
         cityRepository.save(business.getCity());
         userRepository.save(user);
@@ -71,7 +77,6 @@ public class BusinessService {
         if (business != null) {
 
             User user = userRepository.findById(business.getOwner().getId()).orElseThrow(() -> new IllegalArgumentException("Unknown user..."));
-            ;
 
             return user.getUsername().equals(userName);
         } else {
@@ -90,7 +95,7 @@ public class BusinessService {
         businessRepository.delete(business);
     }
 
-    public BusinessProfileViewModel getProfileView(long id) {
+    public BusinessProfileViewModel getBusinessProfileView(long id) {
 
         Optional<Business> business = businessRepository.findById(id);
 

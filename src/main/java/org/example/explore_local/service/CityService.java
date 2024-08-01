@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CitiesService {
+public class CityService {
 
 
     private final CityRepository cityRepository;
@@ -18,6 +18,10 @@ public class CitiesService {
 
 
 
+    public CityService(CityRepository cityRepository, ModelMapper modelMapper) {
+        this.cityRepository = cityRepository;
+        this.modelMapper = modelMapper;
+    }
 
 
     public void addCity(CityDTO cityDTO) {
@@ -26,15 +30,11 @@ public class CitiesService {
        cityRepository.save(city);
     }
 
-    public CitiesService(CityRepository cityRepository, ModelMapper modelMapper) {
-        this.cityRepository = cityRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public List<CityViewModel> getAllCitiesViewModels() {
         return cityRepository.findAll()
                 .stream()
-                .map(CitiesService::mapToCityViewModel)
+                .map(CityService::mapToCityViewModel)
                 .toList();
     }
 
@@ -45,4 +45,27 @@ public class CitiesService {
                 city.getBusinesses().size());
 
     }
+
+    public void seedCities() {
+
+        if (cityRepository.count() <= 0) {
+
+            City city = new City();
+            city.setName("Sofia");
+            city.setAbout("Sofia is the capital of Bulgaria");
+            cityRepository.save(city);
+
+            City city2 = new City();
+            city2.setName("New York");
+            city2.setAbout("New York is one of the most popular travel destinations in the world");
+            cityRepository.save(city2);
+
+
+            City city3 = new City();
+            city3.setName("London");
+            city3.setAbout("London, the capital of England and the United Kingdom");
+            cityRepository.save(city3);
+        }
+    }
+
 }

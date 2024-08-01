@@ -29,30 +29,44 @@
                                name="businessName">
                     </div>
 
-                    <!--------------Add options for category,check classes to match the css---------->
+                    <div class="form-group col-md-6 mb-3">
+                        <label class="text-center text-black font-weight-bold"
+                               th:for="category">Category</label>
+                            <select th:field="*{categoryName}"
+                                    th:errorclass="is-invalid"
+                                    class="form-control" id="drop-down">
+                                <option value="">- Select category-</option>
+                                <option th:each="category: ${allCategories}"
+                                        th:value="${category.displayName()}"
+                                        th:text="${category.displayName()}">
 
-                    <!--                    <div class="form-group bg-transparent">-->
+                                </option>
 
-                    <!--                        <label for="category">Category</label>-->
+                            </select>
 
-                    <div th:field="*{category}" class="select " tabindex="1" id="category">
-                        <input class="selectopt btn btn-primary" name="test" type="radio" id="option1" checked/>
-                        <label for="option1" class="option ">Choose Category</label>
-                        <input class="selectopt " name="test" type="radio" id="option2"/>
-                        <label for="option2" class="option f">Shopping</label>
-                        <input class="selectopt" name="test" type="radio" id="option3"/>
-                        <label for="option3" class="option">Restaurants</label>
-                        <input class="selectopt" name="test" type="radio" id="option4"/>
-                        <label for="option4" class="option">NightLife</label>
-                        <input class="selectopt" name="test" type="radio" id="option6"/>
-                        <label for="option6" class="option">Local Farms</label>
-                        <input class="selectopt" name="test" type="radio" id="option7"/>
-                        <label for="option7" class="option">Home Services</label>
-                        <input class="selectopt" name="test" type="radio" id="option8"/>
-                        <label for="option8" class="option">Beauty And Spa</label>
-                        <input class="selectopt" name="test" type="radio" id="option9"/>
-                        <label for="option9" class="option">Automotive</label>
+
+                        <!--                        <p class="invalid-feedback errors alert alert-danger">-->
+                        <!--                            City is required.-->
+                        <!--                        </p>-->
                     </div>
+<!--                    <div th:field="*{category}" class="select " tabindex="1" id="category">-->
+<!--                        <input class="selectopt btn btn-primary" name="test" type="radio" id="option1" checked/>-->
+<!--                        <label for="option1" class="option ">Select Category</label>-->
+<!--                        <input class="selectopt " name="test" type="radio" id="option2"/>-->
+<!--                        <label for="option2" class="option f">Shopping</label>-->
+<!--                        <input class="selectopt" name="test" type="radio" id="option3"/>-->
+<!--                        <label for="option3" class="option">Restaurants</label>-->
+<!--                        <input class="selectopt" name="test" type="radio" id="option4"/>-->
+<!--                        <label for="option4" class="option">NightLife</label>-->
+<!--                        <input class="selectopt" name="test" type="radio" id="option6"/>-->
+<!--                        <label for="option6" class="option">Local Farms</label>-->
+<!--                        <input class="selectopt" name="test" type="radio" id="option7"/>-->
+<!--                        <label for="option7" class="option">Home Services</label>-->
+<!--                        <input class="selectopt" name="test" type="radio" id="option8"/>-->
+<!--                        <label for="option8" class="option">Beauty And Spa</label>-->
+<!--                        <input class="selectopt" name="test" type="radio" id="option9"/>-->
+<!--                        <label for="option9" class="option">Automotive</label>-->
+<!--                    </div>-->
 
                     <!--                        <select class="form-control form-select form-select-sm " aria-label="Default select example"-->
                     <!--                                id="category" name="category">-->
@@ -100,15 +114,35 @@
 
                     </div>
 
-                    <div class="form-group">
-                        <label for="businessAddress">City</label>
-                        <input th:field="*{city}"
+                    <div class="form-group col-md-6 mb-3">
+                        <label class="text-center text-white font-weight-bold"
+                               th:for="city">City</label>
+                        <select th:field="*{cityName}"
+                                th:errorclass="is-invalid"
+                                class="form-control" id="drop-down1">
+                            <option value="">- Select city-</option>
+                            <option th:each="city: ${cities}"
+                                    th:value="${city.name}"
+                                    th:text="${city.name}">
 
-                               class="form-control"
-                               id="city"
-                               name="city">
+                            </option>
 
+                        </select>
+
+<!--                        <p class="invalid-feedback errors alert alert-danger">-->
+<!--                            City is required.-->
+<!--                        </p>-->
                     </div>
+
+<!--                    <div class="form-group">-->
+<!--                        <label for="businessAddress">City</label>-->
+<!--                        <input th:field="*{city}"-->
+
+<!--                               class="form-control"-->
+<!--                               id="city"-->
+<!--                               name="city">-->
+
+<!--                    </div>-->
 
 <!--                    <div class="select" th:each="city : ${cities}">-->
 <!--                        <input class="select btn btn-primary" name="test" type="radio" id="option5" checked/>-->

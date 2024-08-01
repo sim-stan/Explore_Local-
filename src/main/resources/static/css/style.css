@@ -789,3 +789,17 @@ header.header-sm{
 
     position: relative;
 }
+
+#delete{
+    display: inherit;
+    position: relative;
+    margin-top: 0.5rem;
+
+}
+/*drop-down menus: categories and city*/
+
+#drop-down,#drop-down1 {
+    background-color: var(--green);
+    color: #fff;
+    text-align: center;
+}

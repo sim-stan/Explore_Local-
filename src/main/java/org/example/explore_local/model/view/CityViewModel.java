@@ -54,4 +54,9 @@ public class CityViewModel {
         this.businessesCount = businessesCount;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return name ;
+    }
 }

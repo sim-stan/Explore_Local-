@@ -44,13 +44,13 @@ public class SecurityConfiguration {
                                 logout
                                         .logoutUrl("/users/logout")
                                         .logoutSuccessUrl("/")
-                                        .invalidateHttpSession(true))
-                .rememberMe(
-                        rememberMe ->
-                                rememberMe
-                                        .key(rememberMeKey)
-                                        .rememberMeParameter("rememberme")
-                                        .rememberMeCookieName("rememberme")
+                                        .invalidateHttpSession(true) //dobavi zatvarqshta skoba !
+//                .rememberMe(
+//                        rememberMe ->
+//                                rememberMe
+//                                        .key(rememberMeKey)
+//                                        .rememberMeParameter("rememberme")
+//                                        .rememberMeCookieName("rememberme")
 
 //                .oauth2Login(
 //                        oauth -> oauth.successHandler(oAuthSuccessHandler)

@@ -2,6 +2,7 @@ package org.example.explore_local.model.entity;
 
 
 import jakarta.persistence.*;
+import org.example.explore_local.model.enums.RoleName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
+
+
     @Column(name = "full_name")
     private String fullName;
 
@@ -32,13 +35,10 @@ public class User implements Serializable {
     private List<Review> reviews;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
-    )
-    private List<Role> roles;
+
+    @ElementCollection(targetClass = RoleName.class,fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private List<RoleName> roles;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     private List<Business> ownedBusinesses;
@@ -52,7 +52,7 @@ public class User implements Serializable {
     public User(long id, String username,
                 String password, String email,
                 String fullName, List<Review> reviews,
-                List<Role> roles,
+                List<RoleName> roles,
                 List<Business> ownedBusinesses) {
         this.id = id;
         this.username = username;
@@ -107,14 +107,7 @@ public class User implements Serializable {
     }
 
 
-    public List<Role> getRoles() {
-        return roles;
-    }
 
-    public User setRoles(List<Role> roles) {
-        this.roles = roles;
-        return this;
-    }
 
     public List<Business> getOwnedBusinesses() {
         return ownedBusinesses;
@@ -135,6 +128,23 @@ public class User implements Serializable {
         return this;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public User setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+        return this;
+    }
+
+    public List<RoleName> getRoles() {
+        return roles;
+    }
+
+    public User setRoles(List<RoleName> roles) {
+        this.roles = roles;
+        return this;
+    }
 
     @Override
     public String toString() {

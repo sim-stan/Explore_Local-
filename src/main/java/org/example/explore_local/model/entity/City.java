@@ -1,7 +1,6 @@
 package org.example.explore_local.model.entity;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -24,8 +23,8 @@ public class City {
         this.businesses=new ArrayList<>();
     }
 
-    public City(long id, String name, List<Business> businesses) {
-        this.id = id;
+    public City( String name, List<Business> businesses) {
+
         this.name = name;
         this.businesses = businesses;
     }
@@ -80,4 +79,12 @@ public class City {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", businesses=" + businesses +
+                ", about='" + about + '\'' +
+                '}';
+    }
 }

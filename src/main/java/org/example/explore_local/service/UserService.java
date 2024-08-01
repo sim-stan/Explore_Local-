@@ -26,17 +26,16 @@ public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final RoleService roleService;
+
     private final BusinessService businessService;
     private final UserHelperService userHelperService;
     private final UserDetailsService userDetailsService;
 
 
-    public UserService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, RoleService roleService, BusinessService businessService, UserHelperService userHelperService, UserDetailsService userDetailsService) {
+    public UserService(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder, BusinessService businessService, UserHelperService userHelperService, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
-        this.roleService = roleService;
         this.businessService = businessService;
         this.userHelperService = userHelperService;
         this.userDetailsService = userDetailsService;
@@ -52,9 +51,7 @@ public class UserService {
             throw new RuntimeException("Username is taken");
         }
         user.setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword()));
-
-        user.getRoles().add(roleService.findByName(RoleName.USER));
-
+        user.getRoles().add(RoleName.USER);
         userRepository.save(user);
     }
 
@@ -110,9 +107,9 @@ public class UserService {
 
     public void deleteUser(long id) {
         userRepository.findById(id).ifPresent(user -> {
-                        user.getOwnedBusinesses().
-                        forEach(businessService::deleteBusiness);
-                        userRepository.delete(user);
+            user.getOwnedBusinesses().
+                    forEach(businessService::deleteBusiness);
+            userRepository.delete(user);
         });
 
 
@@ -138,4 +135,32 @@ public class UserService {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User with username: " + username + " not found", username));
         return modelMapper.map(user, UserEditProfileDTO.class);
     }
+
+    public void seedUserAndAdmin() {
+
+
+        if (userRepository.count() <= 0) {
+            User testUser =new User();
+
+            testUser.setFullName("John Smith");
+            testUser.setEmail("john@smith.com");
+            testUser.setUsername("john");
+            testUser.setPassword(passwordEncoder.encode("123"));
+            testUser.getRoles().add(RoleName.USER);
+            userRepository.save(testUser);
+
+
+
+            User testAdmin =new User();
+
+            testAdmin.setFullName("Admin Admin");
+            testAdmin.setEmail("admin@admin.com");
+            testAdmin.setUsername("admin");
+            testAdmin.setPassword(passwordEncoder.encode("123"));
+            testAdmin.getRoles().add(RoleName.ADMIN);
+            userRepository.save(testAdmin);
+        }
+    }
+
+
 }

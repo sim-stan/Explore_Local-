@@ -1,7 +1,7 @@
 package org.example.explore_local.Controller;
 
 import org.example.explore_local.model.dtos.CityDTO;
-import org.example.explore_local.service.CitiesService;
+import org.example.explore_local.service.CityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class CityController {
 
-    private final CitiesService citiesService;
+    private final CityService cityService;
 
-    public CityController(CitiesService citiesService) {
-        this.citiesService = citiesService;
+    public CityController(CityService cityService) {
+        this.cityService = cityService;
     }
 
 
@@ -43,7 +43,7 @@ public class CityController {
 
         } else {
 
-            this.citiesService.addCity(cityDTO);
+            this.cityService.addCity(cityDTO);
             return "redirect:/";
         }
     }

@@ -1,6 +1,8 @@
 package org.example.explore_local.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +27,22 @@ public class Business {
     private Category category;
 
     @Column(unique = true)
+    @Email
     private String email;
 
 
     @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @NotBlank
     private String address;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private City city;
 
 
-    @Column(nullable = false)
+    @NotBlank
     private String about;
     private String profilePicture;
 

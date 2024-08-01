@@ -1,7 +1,7 @@
 package org.example.explore_local.Controller;
 
 import org.example.explore_local.model.view.CityViewModel;
-import org.example.explore_local.service.CitiesService;
+import org.example.explore_local.service.CityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CitiesController {
 
 
-    private final CitiesService citiesService;
+    private final CityService cityService;
 
-    public CitiesController(CitiesService citiesService) {
-        this.citiesService = citiesService;
+    public CitiesController(CityService cityService) {
+        this.cityService = cityService;
     }
 
 
@@ -29,7 +29,7 @@ public class CitiesController {
     @GetMapping("/all")
     public String allCities(Model model) {
 
-        model.addAttribute("allCities", citiesService.getAllCitiesViewModels());
+        model.addAttribute("allCities", cityService.getAllCitiesViewModels());
         return "cities";
     }
 

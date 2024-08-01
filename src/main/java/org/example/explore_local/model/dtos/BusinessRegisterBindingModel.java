@@ -1,8 +1,7 @@
 package org.example.explore_local.model.dtos;
 
+
 import jakarta.validation.constraints.NotBlank;
-import org.example.explore_local.model.entity.Category;
-import org.example.explore_local.model.entity.City;
 import org.example.explore_local.vallidation.anotations.UniqueBusinessName;
 import org.example.explore_local.vallidation.anotations.UniqueEmail;
 
@@ -11,36 +10,28 @@ import javax.validation.constraints.NotNull;
 public class BusinessRegisterBindingModel {
 
 
-    @NotBlank
+    @NotNull
     @UniqueBusinessName
     private String name;
 
 
     @NotNull
-    private Category category;
+    private String categoryName;
     @NotNull
     @UniqueEmail
     private String email;
 
 
-    @NotBlank
+    @NotNull
     private String phoneNumber;
 
-    @NotBlank
+    @NotNull
     private String address;
 
 
-    @NotBlank
-    private City city;
+    @NotNull
+    private String cityName;
 
-    public City getCity() {
-        return city;
-    }
-
-    public BusinessRegisterBindingModel setCity(City city) {
-        this.city = city;
-        return this;
-    }
 
     @NotBlank
     private String about;
@@ -57,14 +48,6 @@ public class BusinessRegisterBindingModel {
         return this;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public BusinessRegisterBindingModel setCategory(Category category) {
-        this.category = category;
-        return this;
-    }
 
     public String getEmail() {
         return email;
@@ -99,6 +82,24 @@ public class BusinessRegisterBindingModel {
 
     public BusinessRegisterBindingModel setAbout(String about) {
         this.about = about;
+        return this;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public BusinessRegisterBindingModel setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+        return this;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public BusinessRegisterBindingModel setCityName(String cityName) {
+        this.cityName = cityName;
         return this;
     }
 }

@@ -3,9 +3,10 @@ package org.example.explore_local.Controller;
 import jakarta.validation.Valid;
 import org.example.explore_local.model.dtos.BusinessEditProfileDTO;
 import org.example.explore_local.model.dtos.BusinessRegisterBindingModel;
+import org.example.explore_local.model.enums.CategoryName;
 import org.example.explore_local.model.view.BusinessProfileViewModel;
 import org.example.explore_local.service.BusinessService;
-import org.example.explore_local.service.CitiesService;
+import org.example.explore_local.service.CityService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,11 +21,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BusinessController {
 
     private final BusinessService businessService;
-    private final CitiesService citiesService;
+    private final CityService cityService;
 
-    public BusinessController(BusinessService businessService, CitiesService citiesService) {
+    public BusinessController(BusinessService businessService, CityService cityService) {
         this.businessService = businessService;
-        this.citiesService = citiesService;
+        this.cityService = cityService;
     }
 
     @ModelAttribute("businessRegister")
@@ -37,10 +38,15 @@ public class BusinessController {
         return new BusinessEditProfileDTO();
     }
 
+    @ModelAttribute("allCategories")
+    public CategoryName[] allCategories(){
+        return CategoryName.values();
+    }
+
     @GetMapping("/add-business")
     public String addBusiness(Model model) {
 
-        model.addAttribute("cities",citiesService.getAllCitiesViewModels());
+        model.addAttribute("cities", cityService.getAllCitiesViewModels());
         return "add_business";
     }
 
@@ -65,7 +71,7 @@ public class BusinessController {
     public String viewBusiness(@PathVariable("id") long id, Model model,
                                  @AuthenticationPrincipal UserDetails principal) {
 
-        BusinessProfileViewModel profileView = businessService.getProfileView(id);
+        BusinessProfileViewModel profileView = businessService.getBusinessProfileView(id);
         model.addAttribute("userProfile", profileView);
 
 

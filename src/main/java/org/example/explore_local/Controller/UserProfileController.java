@@ -1,5 +1,7 @@
 package org.example.explore_local.Controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.example.explore_local.model.dtos.UserEditProfileDTO;
 import org.example.explore_local.model.view.UserProfileViewModel;
@@ -7,12 +9,14 @@ import org.example.explore_local.repository.UserRepository;
 import org.example.explore_local.service.UserHelperService;
 import org.example.explore_local.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -96,10 +100,14 @@ public class UserProfileController {
     }
 
     @DeleteMapping("/delete-account/{id}")
-    public String deleteUser(@PathVariable long id) {
+    public ModelAndView deleteUser(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
         userService.deleteUser(id);
 
-        return "redirect:/";
+        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+        //Second option !!
+       // SecurityContextHolder.clearContext();
+        return new ModelAndView("index");
+
     }
 
 

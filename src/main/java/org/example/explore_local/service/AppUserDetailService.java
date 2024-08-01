@@ -1,7 +1,8 @@
 package org.example.explore_local.service;
 
-import org.example.explore_local.model.entity.Role;
+
 import org.example.explore_local.model.entity.User;
+import org.example.explore_local.model.enums.RoleName;
 import org.example.explore_local.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -44,9 +45,9 @@ public class AppUserDetailService implements UserDetailsService {
         );
     }
 
-    private static GrantedAuthority map(Role role) {
+    private static GrantedAuthority map(RoleName role) {
         return new SimpleGrantedAuthority(
-                "ROLE_" + role.getName().name()
+                "ROLE_" + role.name()
         );
     }
 }
