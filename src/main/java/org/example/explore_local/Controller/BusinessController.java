@@ -6,6 +6,7 @@ import org.example.explore_local.model.dtos.BusinessRegisterBindingModel;
 import org.example.explore_local.model.enums.CategoryName;
 import org.example.explore_local.model.view.BusinessProfileViewModel;
 import org.example.explore_local.service.BusinessService;
+import org.example.explore_local.service.CategoryService;
 import org.example.explore_local.service.CityService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,16 +17,22 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Arrays;
+
 @Controller
 @RequestMapping("/businesses")
 public class BusinessController {
 
     private final BusinessService businessService;
     private final CityService cityService;
+    private final CategoryService categoryService;
 
-    public BusinessController(BusinessService businessService, CityService cityService) {
+
+    public BusinessController(BusinessService businessService, CityService cityService, CategoryService categoryService) {
         this.businessService = businessService;
         this.cityService = cityService;
+        this.categoryService = categoryService;
+
     }
 
     @ModelAttribute("businessRegister")
@@ -47,6 +54,8 @@ public class BusinessController {
     public String addBusiness(Model model) {
 
         model.addAttribute("cities", cityService.getAllCitiesViewModels());
+
+        System.out.println(Arrays.toString(CategoryName.values()));
         return "add_business";
     }
 

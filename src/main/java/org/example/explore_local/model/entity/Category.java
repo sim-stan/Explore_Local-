@@ -60,4 +60,14 @@ public class Category {
         this.businesses = businesses;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", categoryName=" + categoryName +
+                ", businesses=" + businesses +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

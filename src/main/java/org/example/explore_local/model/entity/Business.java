@@ -198,4 +198,23 @@ public class Business {
         this.city = city;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Business{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", city=" + city +
+                ", about='" + about + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", owner=" + owner +
+                ", reviews=" + reviews +
+                ", pictures=" + pictures +
+                ", likes=" + likes +
+                '}';
+    }
 }

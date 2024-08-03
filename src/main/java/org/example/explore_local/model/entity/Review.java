@@ -78,5 +78,17 @@ public class Review {
         this.business = business;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", approved=" + approved +
+                ", created=" + created +
+                ", text='" + text + '\'' +
+                ", author=" + author +
+                ", business=" + business +
+                '}';
+    }
 }
 

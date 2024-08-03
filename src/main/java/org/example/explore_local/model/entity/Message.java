@@ -65,4 +65,15 @@ public class Message {
     public void setRecipient(User recipient) {
         this.recipient = recipient;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", dateTime=" + dateTime +
+                ", text='" + text + '\'' +
+                ", author=" + author +
+                ", recipient=" + recipient +
+                '}';
+    }
 }

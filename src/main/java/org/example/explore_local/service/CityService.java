@@ -46,6 +46,10 @@ public class CityService {
 
     }
 
+//    public City getCityByName(String name){
+//        return  cityRepository.getCityByName(name);
+//    }
+
     public void seedCities() {
 
         if (cityRepository.count() <= 0) {
