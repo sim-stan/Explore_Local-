@@ -74,9 +74,8 @@ public class City {
         this.about = about;
         return this;
     }
-    public City addBusinesses(Business businesses) {
-        this.businesses .add(businesses);
-        return this;
+    public void addBusiness(Business businesses) {
+        this.businesses.add(businesses);
     }
 
     @Override

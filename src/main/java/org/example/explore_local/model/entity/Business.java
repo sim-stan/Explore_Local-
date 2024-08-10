@@ -3,9 +3,11 @@ package org.example.explore_local.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "businesses")
@@ -18,8 +20,10 @@ public class Business {
     @Column(nullable = false, unique = true)
     private String name;
 
+    
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "businesses_categories",
             joinColumns = {@JoinColumn(name = "business_id", referencedColumnName = "id")},
@@ -37,7 +41,7 @@ public class Business {
     @NotBlank
     private String address;
 
-
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     private City city;
 
@@ -199,22 +203,22 @@ public class Business {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Business{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", category=" + category +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", city=" + city +
-                ", about='" + about + '\'' +
-                ", profilePicture='" + profilePicture + '\'' +
-                ", owner=" + owner +
-                ", reviews=" + reviews +
-                ", pictures=" + pictures +
-                ", likes=" + likes +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Business{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", category=" + category +
+//                ", email='" + email + '\'' +
+//                ", phoneNumber='" + phoneNumber + '\'' +
+//                ", address='" + address + '\'' +
+//                ", city=" + city +
+//                ", about='" + about + '\'' +
+//                ", profilePicture='" + profilePicture + '\'' +
+//                ", owner=" + owner +
+//                ", reviews=" + reviews +
+//                ", pictures=" + pictures +
+//                ", likes=" + likes +
+//                '}';
+//    }
 }

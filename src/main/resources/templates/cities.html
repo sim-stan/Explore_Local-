@@ -21,30 +21,40 @@
 </header>
 
 
-<section id="featured" class="py-4">
-    <div class="container" id="all-businesses" th:each="city:${allCities}" th:object="${city}">
+<section id="featured" class="py-4 city">
+    <div class="container city" id="all-businesses" th:each="city:${allCities}" th:object="${city}">
 
-        <div class="featured-row">
+
+        <div class="featured-row city">
             <div class="featured-item my-2 shadow">
                 <img src="/images/featured-reo-de-janeiro-brazil.jpg" alt="featured place">
                 <div class="featured-item-content">
-                            <span th:text="*{name}">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </span>
-                    <span th:text="*{businessesCount}">
+                    <i class="fas fa-map-marker-alt" ></i>
+                    <span  th:text="*{name}"></span>
+                    <span th:text="'Places To Visit : ' + *{businessesCount}">
                                 <i class="fa-solid fa-globe"></i>
                             </span>
-                    <div>
-                        <p class="text" th:text="*{about}">Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
+                    <div >
+                        <p class="text" th:text="*{about}"></p>
+
                     </div>
+                    <a th:href="@{/cities/city/{id}(id = *{id})}" class="btn">See More</a>
                 </div>
             </div>
 
 
         </div>
+
+
     </div>
+
 </section>
+
+<a th:method="GET"
+   th:href="@{/}"
+   th:text="Back"
+   type="submit" id="back-button-pages" class="btn btn-primary">Back
+</a>
 <!-- end of popular places section -->
 
 

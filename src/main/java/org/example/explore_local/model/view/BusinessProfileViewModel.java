@@ -9,19 +9,16 @@ public class BusinessProfileViewModel {
     private String name;
 
 
-
     private Category category;
 
 
     private String email;
 
 
-
     private String phoneNumber;
 
 
     private String address;
-
 
 
     private String about;

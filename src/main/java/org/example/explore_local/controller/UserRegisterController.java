@@ -1,4 +1,4 @@
-package org.example.explore_local.Controller;
+package org.example.explore_local.controller;
 
 import jakarta.validation.Valid;
 import org.example.explore_local.model.dtos.UserRegisterBindingModel;

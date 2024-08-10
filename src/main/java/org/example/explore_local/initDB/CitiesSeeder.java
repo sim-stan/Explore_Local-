@@ -9,6 +9,7 @@ public class CitiesSeeder implements CommandLineRunner {
 
     private final CityService cityService;
 
+
     public CitiesSeeder(CityService cityService) {
         this.cityService = cityService;
     }

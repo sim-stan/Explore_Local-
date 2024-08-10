@@ -18,6 +18,13 @@ public class CityViewModel {
         this.businessesCount = businessesCount;
     }
 
+    public CityViewModel(long id, String name, String about, int businessesCount) {
+        this.id=id;
+        this.name = name;
+        this.about = about;
+        this.businessesCount = businessesCount;
+    }
+
     public long getId() {
         return id;
     }
@@ -55,8 +62,13 @@ public class CityViewModel {
         return this;
     }
 
+
+
     @Override
     public String toString() {
         return name ;
     }
+
+
+
 }

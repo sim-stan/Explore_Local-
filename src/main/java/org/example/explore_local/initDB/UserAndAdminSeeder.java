@@ -9,7 +9,8 @@ public class UserAndAdminSeeder implements CommandLineRunner {
 
     private final UserService userService;
 
-    public UserAndAdminSeeder(UserService userService) {
+
+    public UserAndAdminSeeder( UserService userService) {
         this.userService = userService;
     }
 

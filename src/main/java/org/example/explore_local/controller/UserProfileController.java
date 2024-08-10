@@ -1,4 +1,4 @@
-package org.example.explore_local.Controller;
+package org.example.explore_local.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -47,7 +47,6 @@ public class UserProfileController {
 
 
     @GetMapping("/profile")
-
     public String viewProfile(Model model, RedirectAttributes redirectAttributes,
                               @AuthenticationPrincipal UserDetails userDetails) {
 
@@ -55,7 +54,7 @@ public class UserProfileController {
         UserProfileViewModel profileView = userService.getProfileView();
         model.addAttribute("userProfile", profileView);
 
-        return "profile";
+        return "userProfile";
     }
 
 
@@ -77,7 +76,7 @@ public class UserProfileController {
             model.addAttribute("profileEditDTO", profileEditDTO);
 
         }
-        return "edit-profile";
+        return "edit-userProfile";
     }
 
     @PostMapping("/edit-profile/{username}")

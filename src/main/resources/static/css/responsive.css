@@ -196,6 +196,18 @@
 
 @media screen and (min-width: 1400px){
     .featured-row, .categories-row{
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
     }
+
+    .city{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
 }

@@ -1,4 +1,4 @@
-package org.example.explore_local.Controller;
+package org.example.explore_local.controller;
 
 import org.example.explore_local.model.dtos.UserLoginBindingModel;
 import org.example.explore_local.repository.UserRepository;

@@ -22,11 +22,16 @@
     <link rel = "stylesheet" href = "/css/style.css">
     <link rel = "stylesheet" href = "/css/responsive.css">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3 schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <!-- navbar  -->
-<nav  th:fragment="navbar"
-        class = "navbar">
+<!--/*@thymesVar id="footerMostPopular" type="java"*/-->
+<nav  th:fragment="navbar" class = "navbar" >
     <div class = "container flex">
         <a href = "/templates/index.html" class = "site-brand">
             Explore<span>Local</span>
@@ -49,11 +54,14 @@
                 <li class = "nav-item" >
                     <a th:href = "@{/cities/all}" class = "nav-link">Cities</a>
                 </li>
+                <li class = "nav-item" >
+                    <a th:href = "@{/businesses/all}" class = "nav-link">Businesses</a>
+                </li>
                 <li class = "nav-item">
                     <a th:href = "@{/businesses/add-business}" class = "nav-link">Add Business</a>
                 </li>
 <!--                //TODO : only Admin to be able to add new city. -->
-                <li class = "nav-item">
+                <li class = "nav-item" sec:authorize="isAuthenticated()">
                     <a th:href = "@{/cities/add-city}" class = "nav-link">Add City</a>
                 </li>
                 <li class = "nav-item">
@@ -90,54 +98,60 @@
 
 
 <!-- footer -->
-<footer th:fragment="footer" class = "py-4">
-    <div class = "container footer-row">
+<footer th:fragment="footer" class = "py-4" >
+    <div class = "container footer-row" >
         <div class = "footer-item">
-            <a href = "/templates/index.html" class = "site-brand">
+            <a th:href = "@{/}" class = "site-brand">
                 Explore<span>Local</span>
             </a>
-            <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet voluptates maiores nam vitae iusto. Placeat rem sint voluptas natus exercitationem autem quod neque, odit laudantium reiciendis ipsa suscipit veritatis voluptate.</p>
+            <p class = "text"> Discover the best spots around you, from cozy restaurants
+                to vibrant nightlife venues where you can unwind after dark.
+                Explore All local shopping options, trendy boutiques, essential stores,
+                and find trusted professionals for all your home services needs.
+                Pamper yourself at nearby beauty and spa centers, and keep your vehicle in top
+                shape with local automotive experts. Whatever you're looking for, it's all
+                just around the corner.</p>
         </div>
 
         <div class = "footer-item">
             <h2>Follow us on: </h2>
             <ul class = "social-links">
                 <li>
-                    <a href = "#">
+                    <a th:href = "@{https://facebook.com}">
                         <i class = "fab fa-facebook-f"></i>
                     </a>
                 </li>
                 <li>
-                    <a href = "#">
+                    <a th:href = "@{https://instagram.com}">
                         <i class = "fab fa-instagram"></i>
                     </a>
                 </li>
                 <li>
-                    <a href = "#">
+                    <a th:href = "@{https://twitter.com}">
                         <i class = "fab fa-twitter"></i>
                     </a>
                 </li>
                 <li>
-                    <a href = "#">
+                    <a th:href = "@{https://pinterest.com}">
                         <i class = "fab fa-pinterest"></i>
                     </a>
                 </li>
                 <li>
-                    <a href = "#">
+                    <a th:href = "@{https://google.com}">
                         <i class = "fab fa-google-plus"></i>
                     </a>
                 </li>
             </ul>
         </div>
 
-        <div class = "footer-item">
+        <div class = "footer-item" >
             <h2>Popular Places:</h2>
-            <ul>
-                <li><a href = "#">Thailand</a></li>
-                <li><a href = "#">Australia</a></li>
-                <li><a href = "#">Maldives</a></li>
-                <li><a href = "#">Switzerland</a></li>
-                <li><a href = "#">Germany</a></li>
+            <ul >
+                <li ><a th:href = "@{/cities/city/1}">Sofia</a></li>
+                <li><a th:href = "@{/cities/city/2}">New York</a></li>
+                <li ><a th:href = "@{/cities/city/3}">London</a></li>
+                <li ><a th:href = "@{/cities/city/4}">Miami</a></li>
+                <li ><a th:href = "@{/cities/city/5}">Los Angeles</a></li>
             </ul>
         </div>
     </div>
@@ -148,7 +162,6 @@
 
 <script src = "/js/script.js"></script>
 <script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
-
 
 </body>
 </html>

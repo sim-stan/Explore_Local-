@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html    lang="en" xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common::head}">
 
 </head>
@@ -10,30 +10,30 @@
 <!-- end of navbar  -->
 
 
-
 <!-- header -->
-<header class = "flex header-sm">
-    <div class = "container" th:object="${allNightLife}">
-        <div class = "header-title">
-            <h1>NightLife</h1>
-            <p th:text="${about}"> </p>
+<header class="flex header-sm">
+    <div class="container" th:object="${cityProfile}">
+        <div class="header-title h-25">
+            <h1 th:text="${cityProfile.name}"></h1>
+            <p th:text="${cityProfile.about}"></p>
         </div>
     </div>
 </header>
+<!-- header -->
 
 <section id="featured" class="py-4">
     <div class="container">
-        <div th:if="${allNightLife.isEmpty()}" class = "title-wrap">
+        <div th:if="${allBusinesses.isEmpty()}" class = "title-wrap">
             <h2 class="sm-title">Still no Places for this Category</h2>
             <h3 class="lg-title">Please come back later </h3>
             <a th:method="GET"
-               th:href="@{/categories/all}"
+               th:href="@{/cities/all}"
                th:text="Back"
                type="submit" id="back-button-pages" class="btn btn-primary">Back
             </a>
         </div>
         <div class="featured-row" >
-            <div class="featured-item my-2 shadow" th:each="business : ${allNightLife}">
+            <div class="featured-item my-2 shadow" th:each="business : ${allBusinesses}">
                 <a th:href = "@{/businesses/business_detail/{id}(id = *{business.id})}" >
                     <img src="/images/featured-reo-de-janeiro-brazil.jpg" alt="featured place">
                     <div class="featured-item-content">
@@ -53,14 +53,15 @@
 
 
 
+<!-- end of blog section -->
 
 
 <!-- footer -->
-<footer  th:replace="~{fragments/common::footer}"></footer>
+<footer th:replace="~{fragments/common::footer}"></footer>
 <!-- end of footer -->
 
 <!-- js -->
-<script src = "/js/script.js"></script>
+<script src="/js/script.js"></script>
 <script>
 
 </script>

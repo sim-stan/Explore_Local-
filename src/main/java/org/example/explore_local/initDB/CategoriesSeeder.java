@@ -9,6 +9,7 @@ public class CategoriesSeeder implements CommandLineRunner {
 
     private final CategoryService categoryService;
 
+
     public CategoriesSeeder(CategoryService categoryService) {
         this.categoryService = categoryService;
     }

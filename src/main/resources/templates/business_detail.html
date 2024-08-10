@@ -1,37 +1,84 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Business Detail</title>
-    <link rel="stylesheet" href="/css/style.css">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/common::head}">
 </head>
 <body>
-<header th:replace="~{fragments/header :: header}"></header>
-<div>
-    <h1 th:text="${business.name}">Business Name</h1>
-    <p th:text="${business.description}">Business Description</p>
-    <h2>Reviews</h2>
-    <ul>
-        <li th:each="review : ${reviews}">
-            <p th:text="${review.content}">Review Content</p>
-            <p th:text="'Rating: ' + ${review.rating}">Rating</p>
-            <p th:text="'By ' + ${review.user.username}">Reviewer</p>
-        </li>
-    </ul>
-    <form th:action="@{/business/{id}/review(id=${business.id})}" method="post">
-        <textarea name="content" placeholder="Write your review"></textarea>
-        <input type="number" name="rating" min="1" max="5">
-        <button type="submit">Submit Review</button>
-    </form>
-    <form th:action="@{/business/{id}/favorite(id=${business.id})}" method="post">
-        <button type="submit">Add to Favorites</button>
-    </form>
-    <form th:action="@{/business/{id}/favorite(id=${business.id})}" method="post" th:object="${favorite}">
-        <input type="hidden" name="_method" value="delete">
-        <button type="submit">Remove from Favorites</button>
-    </form>
-</div>
+
+<nav th:replace="~{fragments/common::navbar}"></nav>
+
+<header class="flex header-sm">
+    <div class="container">
+
+
+        <section id="blog" class="py-4" th:object="${business}">
+            <div class="container">
+
+                <!-- Page Container -->
+                <div class="w3-content w3-margin-top" style="max-width:400px;" >
+
+                    <!-- The Grid -->
+                    <div class="w3-row-padding">
+
+                        <!-- Left Column -->
+                        <div class="w3-third">
+
+                            <div class="w3-white w3-text-grey w3-card-4">
+                                <div class="w3-display-container">
+                                    <img src="/images/test-3.jpg">
+                                </div>
+                                <h2 class="w3-text-grey w3-padding-16" th:text="${business.name}"></h2>
+                                <hr>
+                                <div class="w3-container">
+                                    <div>
+                                        <i class="fa-solid fa-briefcase" style="color: black;"></i>
+                                        <p th:text="'Category : ' + ${business.category.categoryName.displayName()}"></p>
+                                    </div>
+
+                                    <i class="fa-solid fa-house " style="color: black;"></i>
+                                    <p th:text="'Address : ' + ${business.address}"></p>
+                                    <i class="fa-solid fa-envelope" style="color: black;"></i>
+                                    <p th:text="'Email : ' + ${business.email}"></p>
+                                    <i class="fa-solid fa-phone" style="color: black;"></i>
+                                    <p th:text="'Phone number : ' +${business.phoneNumber}"></p>
+                                    <hr>
+
+
+                                </div>
+                            </div>
+
+                            <!-- End Left Column -->
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="w3-twothird">
+
+                            <div class="w3-container w3-card w3-white w3-margin-bottom">
+                                <div class="w3-container">
+                                    <h5 class="w3-opacity"><b>About this Business</b></h5>
+
+                                    <p th:text="${business.about}"></p>
+
+                                </div>
+
+                            </div>
+
+                            <!-- End Right Column -->
+                        </div>
+
+                        <!-- End Grid -->
+                    </div>
+
+                    <!-- End Page Container -->
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+</header>
+<footer th:replace="~{fragments/common::footer}"></footer>
+<script src="https://kit.fontawesome.com/363d6aad6e.js" crossorigin="anonymous"></script>
 </body>
-<footer>
-    <footer th:replace="~{fragments/footer::footer}" class="footer bg-transparent  py-2"></footer>
-</footer>
 </html>

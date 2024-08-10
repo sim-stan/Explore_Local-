@@ -11,126 +11,49 @@
 <nav th:replace="~{fragments/common::navbar}"></nav>
 <!-- end of navbar  -->
 
-
-<section id = "featured" class = "py-4">
-    <div class = "container" id="all-businesses" >
-        <div class = "title-wrap">
-            <span class = "sm-title">Explore places before your travel </span>
-            <h2 class = "lg-title"> Most Popular </h2>
+<header class = "flex header-sm">
+    <div class = "container" th:object="${allBusinesses}">
+        <div class = "header-title">
+            <h1>All Places</h1>
+            <p th:text="${about}"> </p>
         </div>
+    </div>
+</header>
+<!-- header -->
 
-        <div class = "featured-row">
-            <div class = "featured-item my-2 shadow">
-                <img src = "/images/featured-reo-de-janeiro-brazil.jpg" alt = "featured place">
-                <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Reo De Janeiro, Brazil
-                            </span>
-                    <div>
-                        <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class = "featured-item my-2 shadow">
-                <img src = "/images/featured-north-bondi-australia.jpg" alt = "featured place">
-                <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                North Bondi, Australia
-                            </span>
-                    <div>
-                        <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                    </div>
-                </div>
-            </div>
+<section id="featured" class="py-4">
+    <div class="container">
+        <div th:if="${allBusinesses.isEmpty()}" class = "title-wrap">
+            <h2 class="sm-title">No Registered Businesses </h2>
+            <h3 class="lg-title">Please come back later </h3>
+            <a th:method="GET"
+               th:href="@{/categories/all}"
+               th:text="Back"
+               type="submit" id="back-button-pages" class="btn btn-primary">Back
+            </a>
+        </div>
+        <div class="featured-row" >
+            <div class="featured-item my-2 shadow" th:each="business : ${allBusinesses}">
+                <a th:href = "@{/businesses/business_detail/{id}(id = *{business.id})}" >
+                    <img src="/images/featured-reo-de-janeiro-brazil.jpg" alt="featured place">
+                    <div class="featured-item-content">
+                            <span th:text="${business.name}">
+                                <i class="fas fa-map-marker-alt"></i>
 
-            <div class = "featured-item my-2 shadow">
-                <img src = "/images/featured-berlin-germany.jpg" alt = "featured place">
-                <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Berlin, Germany
                             </span>
-                    <div>
-                        <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
+                        <div>
+                            <p class="text" th:text="${business.about}"></p>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class = "featured-item my-2 shadow">
-                <img src = "/images/featured-khwaeng-wat-arun-thailand.jpg" alt = "featured place">
-                <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Khwaeng wat arun, thailand
-                            </span>
-                    <div>
-                        <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class = "featured-item my-2 shadow">
-                <img src = "/images/featured-rome-italy.jpg" alt = "featured place">
-                <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                Rome, Italy
-                            </span>
-                    <div>
-                        <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class = "featured-item my-2 shadow">
-                <img src = "/images/featured-fuvahmulah-maldives.jpg" alt = "featured place">
-                <div class = "featured-item-content">
-                            <span>
-                                <i class = "fas fa-map-marker-alt"></i>
-                                fuvahmulah, maldives
-                            </span>
-                    <div>
-                        <p class = "text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta sed dignissimos libero soluta illum, harum amet excepturi sit?</p>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
 </section>
-<!-- about section -->
-<!--<section id="about" class="py-4">-->
-<!--    <div class="container">-->
-<!--        <div class="title-wrap">-->
-<!--            <span class="sm-title">things to know about us</span>-->
-<!--            <h2 class="lg-title">our story</h2>-->
-<!--        </div>-->
-
-<!--        <div class="about-row">-->
-<!--            <div class="about-left my-2">-->
-<!--                <img src="/images/about-img.jpg" alt="about img">-->
-<!--            </div>-->
-<!--            <div class="about-right">-->
-<!--                <h2>How We Started </h2>-->
-<!--                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae vitae sed aperiam qui-->
-<!--                    repudiandae earum voluptatem. Modi at inventore omnis veniam necessitatibus exercitationem vel-->
-<!--                    nesciunt delectus ex officiis, culpa doloremque odit illo saepe placeat. Delectus consequuntur-->
-<!--                    reprehenderit omnis accusantium officiis!</p>-->
-<!--                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique explicabo blanditiis-->
-<!--                    quidem consequuntur qui quaerat fuga iste tenetur consequatur porro. Aliquam maiores alias doloribus-->
-<!--                    at quisquam quo numquam perferendis. Odit!</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<!-- end of about section -->
-
-
 
 <footer  th:replace="~{fragments/common::footer}"></footer>
-<!-- end of footer -->
+
 
 <!-- js -->
 <script src = "/js/script.js"></script>

@@ -77,7 +77,6 @@ public class UserService {
     }
 
     public UserProfileViewModel getProfileView() {
-        System.out.println(userHelperService.getUser());
         return modelMapper.map(userHelperService.getUser(), UserProfileViewModel.class);
 
     }

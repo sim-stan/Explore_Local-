@@ -1,17 +1,23 @@
 package org.example.explore_local.service;
 
+import org.example.explore_local.model.entity.Business;
 import org.example.explore_local.model.entity.Category;
 import org.example.explore_local.model.enums.CategoryName;
+import org.example.explore_local.repository.BusinessRepository;
 import org.example.explore_local.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final BusinessRepository businessRepository;
 
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, BusinessRepository businessRepository) {
         this.categoryRepository = categoryRepository;
+        this.businessRepository = businessRepository;
     }
 
 
@@ -21,10 +27,33 @@ public class CategoryService {
 //    }
 
 
-    public Category getCategoryByCategoryName(CategoryName name){
-        return categoryRepository.getCategoryByCategoryName(name);
-    }
+    public CategoryName getCategoryByDisplayName(String name) {
 
+
+        switch (name) {
+            case "Restaurants":
+                return CategoryName.RESTAURANTS;
+            case "Shopping":
+                return CategoryName.SHOPPING;
+
+            case "Nightlife":
+                return CategoryName.NIGHTLIFE;
+            case "Local Farms":
+                return CategoryName.LOCAL_FARMS;
+
+            case "Beauty And Spa":
+                return CategoryName.BEAUTY_SPA;
+            case "Automotive":
+                return CategoryName.AUTOMOTIVE;
+
+            case "Home Services":
+                return CategoryName.HOME_SERVICES;
+
+            default:
+                return null;
+        }
+
+    }
 
 
 //    public List<String> getCategoryNames() {
@@ -41,14 +70,18 @@ public class CategoryService {
 //        return categoryNames;
 //    }
 
+    public List<Business> getBusinessesByCategory(CategoryName categoryName) {
+        Category category = categoryRepository.getCategoryByCategoryName(categoryName);
+        return businessRepository.getBusinessesByCategory(category);
 
+    }
 
 
     public void seedCategories() {
-        if (categoryRepository.count()<=0){
+        if (categoryRepository.count() <= 0) {
 
 
-            Category category1=new Category();
+            Category category1 = new Category();
 
             category1.setCategoryName(CategoryName.AUTOMOTIVE);
             category1.setDescription("Find local professionals for all your automotive needs, " +
@@ -59,7 +92,7 @@ public class CategoryService {
             categoryRepository.save(category1);
 
 
-            Category category2=new Category();
+            Category category2 = new Category();
 
             category2.setCategoryName(CategoryName.HOME_SERVICES);
             category2.setDescription("Find local professionals for a range of home " +
@@ -69,7 +102,7 @@ public class CategoryService {
                     "convenience to keep your living space in top condition.");
             categoryRepository.save(category2);
 
-            Category category3=new Category();
+            Category category3 = new Category();
 
             category3.setCategoryName(CategoryName.BEAUTY_SPA);
             category3.setDescription("Indulge in relaxation and rejuvenation with a variety " +
@@ -80,7 +113,7 @@ public class CategoryService {
             categoryRepository.save(category3);
 
 
-            Category category4=new Category();
+            Category category4 = new Category();
 
             category4.setCategoryName(CategoryName.LOCAL_FARMS);
             category4.setDescription("Find fresh, locally grown fruits and vegetables," +
@@ -90,7 +123,7 @@ public class CategoryService {
             categoryRepository.save(category4);
 
 
-            Category category5=new Category();
+            Category category5 = new Category();
 
             category5.setCategoryName(CategoryName.NIGHTLIFE);
             category5.setDescription("Explore a vibrant nightlife scene with options ranging from lively bars and clubs" +
@@ -100,7 +133,7 @@ public class CategoryService {
                     "offer something for everyone to unwind and socialize after dark.");
             categoryRepository.save(category5);
 
-            Category category6=new Category();
+            Category category6 = new Category();
 
             category6.setCategoryName(CategoryName.RESTAURANTS);
             category6.setDescription("Explore a variety of dining experiences from casual eateries " +
@@ -110,7 +143,7 @@ public class CategoryService {
                     "to satisfy every palate and occasion.");
             categoryRepository.save(category6);
 
-            Category category7=new Category();
+            Category category7 = new Category();
 
             category7.setCategoryName(CategoryName.SHOPPING);
             category7.setDescription("Explore a diverse shopping experience with a " +

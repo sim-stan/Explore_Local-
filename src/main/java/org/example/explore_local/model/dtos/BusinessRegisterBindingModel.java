@@ -2,7 +2,6 @@ package org.example.explore_local.model.dtos;
 
 
 import jakarta.validation.constraints.NotBlank;
-import org.example.explore_local.model.entity.Category;
 import org.example.explore_local.vallidation.anotations.UniqueBusinessName;
 import org.example.explore_local.vallidation.anotations.UniqueEmail;
 
@@ -17,7 +16,7 @@ public class  BusinessRegisterBindingModel {
 
 
     @NotNull
-    private Category categoryName;
+    private String categoryName;
     @NotNull
     @UniqueEmail
     private String email;
@@ -96,11 +95,11 @@ public class  BusinessRegisterBindingModel {
         return this;
     }
 
-    public Category getCategoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(Category categoryName) {
+    public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 }

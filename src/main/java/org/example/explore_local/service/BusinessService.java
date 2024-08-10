@@ -2,15 +2,18 @@ package org.example.explore_local.service;
 
 import org.example.explore_local.model.dtos.BusinessRegisterBindingModel;
 import org.example.explore_local.model.entity.Business;
+import org.example.explore_local.model.entity.Category;
 import org.example.explore_local.model.entity.City;
 import org.example.explore_local.model.entity.User;
 import org.example.explore_local.model.enums.CategoryName;
 import org.example.explore_local.model.enums.RoleName;
 import org.example.explore_local.model.view.BusinessProfileViewModel;
 import org.example.explore_local.repository.BusinessRepository;
+import org.example.explore_local.repository.CategoryRepository;
 import org.example.explore_local.repository.CityRepository;
 import org.example.explore_local.repository.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,17 +27,19 @@ public class BusinessService {
     private final UserRepository userRepository;
     private final CityRepository cityRepository;
     private final CategoryService categoryService;
-
+    private final UserService userService;
+    private final CategoryRepository categoryRepository;
 
 
     private final ModelMapper modelMapper;
 
-    public BusinessService(BusinessRepository businessRepository, UserRepository userRepository, CityRepository cityRepository, CategoryService categoryService, ModelMapper modelMapper) {
+    public BusinessService(BusinessRepository businessRepository, UserRepository userRepository, CityRepository cityRepository, CategoryService categoryService, @Lazy UserService userService, CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.businessRepository = businessRepository;
         this.userRepository = userRepository;
         this.cityRepository = cityRepository;
         this.categoryService = categoryService;
-
+        this.userService = userService;
+        this.categoryRepository = categoryRepository;
 
 
         this.modelMapper = modelMapper;
@@ -54,27 +59,27 @@ public class BusinessService {
             throw new RuntimeException("Business Name is taken");
         }
 
-        System.out.println(business.getCategory().getCategoryName());
+        String name = businessRegisterBindingModel.getCategoryName();
 
+        CategoryName categoryName = categoryService.getCategoryByDisplayName(name);
+        Category category = categoryRepository.getCategoryByCategoryName(categoryName);
 
-        City city=cityRepository.getCityByName(business.getCity().getName());
+        business.setCategory(category);
+
+        City city = cityRepository.getCityByName(business.getCity().getName());
         business.setCity(city);
-
-
-
-//
-//        Category category=categoryService.getCategoryByCategoryName(name);
-//        business.setCategory(category);
 
         user.getRoles().add(RoleName.BUSINESS_OWNER);
         user.getOwnedBusinesses().add(business);
         business.setOwner(user);
 
-
         cityRepository.save(business.getCity());
         userRepository.save(user);
         businessRepository.save(business);
-        city.addBusinesses(business);
+        city.addBusiness(business);
+        category.addBusiness(business);
+        categoryRepository.save(category);
+
         return business.getId();
     }
 
@@ -101,8 +106,15 @@ public class BusinessService {
 
     }
 
+    public long getAllBusinessCount() {
+        return businessRepository.findAll().size();
+    }
 
-    //    @Transactional
+    public long getBusinessCountByCategoryName(Category name) {
+
+        return businessRepository.getAllBusinessesByCategory(name).size();
+    }
+
     public void deleteBusinessById(long id) {
         businessRepository.deleteById(id);
     }
@@ -111,7 +123,7 @@ public class BusinessService {
         businessRepository.delete(business);
     }
 
-    public BusinessProfileViewModel getBusinessProfileView(long id) {
+    public BusinessProfileViewModel getBusinessProfileViewById(long id) {
 
         Optional<Business> business = businessRepository.findById(id);
 
@@ -125,35 +137,54 @@ public class BusinessService {
 
 
     public CategoryName getByCategoryName(String name) {
-        String name1="";
-        if (name.equals("Shopping")){
+        String name1 = "";
+        if (name.equals("Shopping")) {
 
-            name1="SHOPPING";
+            name1 = "SHOPPING";
 
         } else if (name.equals("Restaurants")) {
-            name1="RESTAURANTS";
+            name1 = "RESTAURANTS";
 
 
         } else if (name.equals("Nightlife")) {
-            name1="NIGHTLIFE";
+            name1 = "NIGHTLIFE";
 
 
         } else if (name.equals("Local Farms")) {
-            name1="LOCAL_FARMS";
+            name1 = "LOCAL_FARMS";
 
 
         } else if (name.equals("Beauty And Spa")) {
-            name1="BEAUTY_SPA";
+            name1 = "BEAUTY_SPA";
 
 
         } else if (name.equals("Automotive")) {
-            name1="AUTOMOTIVE";
+            name1 = "AUTOMOTIVE";
 
 
         } else if (name.equals("Home Services")) {
-            name1="HOME_SERVICES";
+            name1 = "HOME_SERVICES";
 
         }
         return getByCategoryName(name1);
     }
+
+    public Business getById(long id) {
+
+        Optional<Business> byId = businessRepository.findById(id);
+
+        return byId.orElse(null);
+    }
+
+    public String getAboutForAllBusinesses() {
+        return "Discover the best spots around you, " +
+                "from cozy restaurants offering diverse cuisines to vibrant " +
+                "nightlife venues where you can unwind after dark. Explore local " +
+                "shopping options, from trendy boutiques to essential stores, and find " +
+                "trusted professionals for all your home services needs. Pamper yourself at " +
+                "nearby beauty and spa centers, and keep your vehicle in top shape with local " +
+                "automotive experts. Whatever you're looking for, it's all just around the corner.";
+    }
+
+
 }

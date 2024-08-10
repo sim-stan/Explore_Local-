@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html   lang="en" xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org/extras/spring-security">
+        xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/common::head}">
 </head>
 <body>
@@ -13,8 +13,11 @@
     <div class="container">
         <div class="header-title">
             <h1>About</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus rerum maxime enim odit illum in molestias
-                beatae doloremque, ratione optio.</p>
+            <p>The idea for our website was born from a simple desire: to make exploring
+                a new city or even rediscovering your own as effortless and enjoyable as possible.
+                Whether you're a traveler seeking the best local spots or a resident looking for
+                hidden gems, we wanted to create a one-stop resource that brings the city's
+                finest offerings right to your fingertips.</p>
         </div>
     </div>
 </header>
@@ -25,7 +28,7 @@
     <div class="container">
         <div class="title-wrap">
             <span class="sm-title">things to know about us</span>
-            <h2 class="lg-title">our story</h2>
+<!--            <h2 class="lg-title">our story</h2>-->
         </div>
 
         <div class="about-row">
@@ -33,60 +36,81 @@
                 <img src="/images/about-img.jpg" alt="about img">
             </div>
             <div class="about-right">
-                <h2>How We Started </h2>
-                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae vitae sed aperiam qui
-                    repudiandae earum voluptatem. Modi at inventore omnis veniam necessitatibus exercitationem vel
-                    nesciunt delectus ex officiis, culpa doloremque odit illo saepe placeat. Delectus consequuntur
-                    reprehenderit omnis accusantium officiis!</p>
-                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique explicabo blanditiis
-                    quidem consequuntur qui quaerat fuga iste tenetur consequatur porro. Aliquam maiores alias doloribus
-                    at quisquam quo numquam perferendis. Odit!</p>
+<!--                <h2>How We Started </h2>-->
+                <p class="text">It all started with a group of passionate explorers who noticed a gap in how people
+                    find and experience local services and attractions. Too often, the best places to eat, relax,
+                    shop, or take care of essential tasks were scattered across different platforms, making it
+                    hard to get a complete picture of what a city truly has to offer. We envisioned a platform
+                    that would bring all these elements together—restaurants, nightlife, shopping, home services,
+                    beauty and spa centers, and automotive care—in one easy-to-navigate space.</p>
+                <p class="text">Our goal was to create a site that doesn’t just list places, but curates them,
+                    offering insights into the best options based on your needs and preferences.
+                    We wanted to build something that felt like a local guide, whether you’re new
+                    to the city or have lived there for years. The result is a website that’s as
+                    dynamic and diverse as the cities it features, helping you make the most of every experience.</p>
+                <p class="text">Today, our website is a vibrant hub for discovering everything a city has to offer.
+                    From planning your next trip to finding the perfect local service, we’re here to help you
+                    explore with confidence and ease. We believe that every city has its own unique charm,
+                    and our mission is to help you uncover it—one amazing place at a time.</p>
             </div>
         </div>
     </div>
 </section>
+
+
 <!-- end of about section -->
 
 <!-- facts section -->
 <section id="facts" class="py-4 flex">
-    <div class="container">
+    <div class="container" style="width: 1800px">
         <div class='title-wrap'>
             <span class="sm-title">Businesses you can find on our Website</span>
 <!--            <h2 class="lg-title">Businesses you can find</h2>-->
         </div>
 
         <div class="facts-row">
-            <div class="facts-item">
+            <div class="facts-item" >
                 <span >   <i class="fa-solid fa-icons  facts-icon "></i></span>
                 <div class="facts-info">
-                    <strong>220</strong>
-                    <p class="text">Clubs and Bars</p>
+                    <strong th:text="${barsCounter}"></strong>
+                    <a th:href="@{/categories/nightlife}">
+                        <p class="text" style="color: white" >Nightlife</p>
+                    </a>
+
                 </div>
             </div>
 
             <div class="facts-item">
                 <span> <i class="fa-solid fa-spa facts-icon"></i></span>
                 <div class="facts-info">
-                    <strong>450</strong>
-                    <p class="text">Beauty and Spa Boutiques</p>
+                    <strong th:text="${spaCounter}"> </strong>
+                    <a th:href="@{/categories/beauty-and-spa}">
+                        <p class="text" style="color: white" >Beauty and Spa Boutiques</p>
+                    </a>
+
                 </div>
             </div>
 
             <div class="facts-item">
-                <span >  <i class="fa-solid fa-tractor facts-icon"></i></span>
+                <span > <i class="fa-solid fa-utensils  facts-icon"></i></span>
                 <div class="facts-info">
-                    <strong>144</strong>
-                    <p class="text">Local Farms</p>
+                    <strong th:text="${restaurantCounter}"></strong>
+                    <a th:href="@{/categories/restaurants}">
+                        <p class="text" style="color: white" >Restaurants</p>
+                    </a>
+                </div>
+            </div>
+            <div class="facts-item">
+                <span > <i class="fa-solid fa-location-dot facts-icon"></i></span>
+                <div class="facts-info">
+                    <strong th:text="${allBusinesses}"></strong>
+                    <a th:href="@{/businesses/all}">
+                        <p class="text" style="color: white" >All Places</p>
+                    </a>
+
                 </div>
             </div>
 
-            <div class="facts-item">
-                <span > <i class="fa-solid fa-utensils  facts-icon"></i>></span>
-                <div class="facts-info">
-                    <strong>120</strong>
-                    <p class="text">Restaurants</p>
-                </div>
-            </div>
         </div>
     </div>
 </section>

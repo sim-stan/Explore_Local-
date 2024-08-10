@@ -26,12 +26,14 @@
 
 .site-brand{
     color: #fff;
-    font-size: 2.4rem;
+    font-size: 2.8rem;
+    /*font-size: 2.4rem;*/
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     opacity: 0.95;
 }
 .site-brand span{
+    /*font-size: 3rem;*/
     font-weight: 300;
 }
 #navbar-show-btn{
@@ -97,7 +99,8 @@
 }
 .nav-link{
     color: #fff;
-    font-size: 1.2rem;
+
+    font-size: 1.3rem;
     -webkit-transition: var(--trans);
     -o-transition: var(--trans);
     transition: var(--trans);
@@ -261,9 +264,11 @@ header{
 }
 .navbar-cng .site-brand{
     color: var(--dark);
+    font-size: 2.8rem;!important;
 }
 .navbar-cng .site-brand span{
     color: var(--green);
+    font-size: 2.8rem;!important;
 }
 .navbar-cng #navbar-show-btn{
     color: var(--green);
@@ -608,6 +613,7 @@ header.header-sm{
 /* popular section */
 #popular.py-4{
     padding-bottom: 0;
+
 }
 .popular-item{
     position: relative;
@@ -671,6 +677,8 @@ header.header-sm{
 }
 .blog-item-top{
     position: relative;
+    /*display: flex;*/
+    grid-template-columns: repeat(4,1fr);
 }
 .blog-date{
     position: absolute;
@@ -784,13 +792,27 @@ header.header-sm{
     margin-bottom: 1rem;
 }
 
-#logout{
+#logout {
     display: inherit;
 
     position: relative;
 }
+#back-button-pages{
+    display: inline-block;
 
-#delete{
+    /*text-align: center;*/
+    /*position: relative;*/
+    /*margin-top:2rem;*/
+
+    text-align: center;
+    /*display: inline-block;*/
+    /*vertical-align: middle;!important;*/
+
+    /*position: inherit;*/
+
+
+}
+ #delete{
     display: inherit;
     position: relative;
     margin-top: 0.5rem;
@@ -802,4 +824,29 @@ header.header-sm{
     background-color: var(--green);
     color: #fff;
     text-align: center;
+}
+
+.blog-row{
+    display:grid;
+    justify-items: center;
+}
+#all-businesses{
+    display: inline-block;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2rem;
+    /*-webkit-box-align: start;*/
+    /*-ms-flex-align: start;*/
+    /*align-items: flex-start;*/
+    }
+
+.featured-row {
+    display: inline-block;
+    grid-row:2/3;
+    /*grid-column:2/3;*/
+}
+
+.w3-content ,.w3-margin-top{
+    font-family: "Roboto", sans-serif;
+    color: black;
+    font-size: 18px;
 }

@@ -16,7 +16,7 @@ public class Category {
     @Column(nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     private CategoryName categoryName;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
     private List<Business> businesses;
 
     @Column(columnDefinition = "TEXT")
@@ -59,6 +59,10 @@ public class Category {
     public Category setBusinesses(List<Business> businesses) {
         this.businesses = businesses;
         return this;
+    }
+
+    public void addBusiness(Business businesses) {
+        this.businesses.add(businesses);
     }
 
     @Override
