@@ -36,6 +36,8 @@ public class UserRegisterController {
 
     @GetMapping("/register")
     public String register() {
+
+        
         return "register";
     }
 
@@ -49,7 +51,7 @@ public class UserRegisterController {
             final String attributeName = "userRegisterBindingModel";
             redirectAttributes
                     .addFlashAttribute(attributeName, userRegisterBindingModel)
-                    .addFlashAttribute("org.springframework.validation.BindingResult", bindingResult);
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult);
             return "redirect:/users/register";
 
         } else {

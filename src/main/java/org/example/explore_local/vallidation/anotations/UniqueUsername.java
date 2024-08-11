@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = { UniqueUsernameValidator.class })
 public @interface UniqueUsername {
 
-    String message() default "{user.username.unique}";
+    String message() default "Username is taken";
 
     Class<?>[] groups() default { };
 

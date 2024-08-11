@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,26 +37,6 @@ public class CityService {
                 .stream()
                 .map(CityService::mapToCityViewModel)
                 .toList();
-    }
-
-//    public List<CityViewModel> getSixMostPopularCities() {
-//
-//        List<CityViewModel> list=getAllCitiesViewModels();
-//
-//        list.sort(Comparator.comparing(CityViewModel::getBusinessesCount).reversed());
-//
-//        return list.stream().limit(6).toList();
-//
-//    }
-
-    public List<CityViewModel> getFooterMostPopularCities() {
-
-        List<CityViewModel> list=getAllCitiesViewModels();
-
-        list.sort(Comparator.comparing(CityViewModel::getBusinessesCount).reversed());
-
-        return list.stream().limit(4).toList();
-
     }
 
 

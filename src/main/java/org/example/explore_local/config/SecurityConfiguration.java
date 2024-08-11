@@ -27,8 +27,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                  authorizeRequests -> authorizeRequests
                   .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                  .requestMatchers("/", "/users/login", "/users/register", "/about","/contact","/users/login-error")
-                  .permitAll().anyRequest().authenticated())
+                  .requestMatchers("/", "/users/login", "/users/register", "/about","/contact","/users/login-error").permitAll()
+                   .requestMatchers("/api/","api/all-cities","api/all-cities/**","api/all-users","api/all-users/**","api/all-businesses","api/all-businesses/**").permitAll().anyRequest().authenticated())
 
 
                 .formLogin(
@@ -57,8 +57,4 @@ public class SecurityConfiguration {
                 ).build();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService(UserRepository userRepository) {
-//        return new AppUserDetailService(userRepository);
-//    }
 }

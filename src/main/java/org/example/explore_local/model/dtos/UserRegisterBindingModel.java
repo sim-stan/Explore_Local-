@@ -3,79 +3,40 @@ package org.example.explore_local.model.dtos;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.explore_local.vallidation.anotations.PasswordMatch;
 import org.example.explore_local.vallidation.anotations.UniqueEmail;
 import org.example.explore_local.vallidation.anotations.UniqueUsername;
 
+@NoArgsConstructor
+@Getter
+@Setter
+@PasswordMatch
 public class UserRegisterBindingModel {
 
-    @NotNull
+    @NotNull(message = "Username can not be null")
     @UniqueUsername
-    @Size(min = 2, message = "{user.username.length}")
+    @Size(min = 2, message = "Username must be at least 2 characters long")
     private String username;
 
-    @NotNull
-    @Size(min = 2, message = "{user.full-name.length}")
+    @NotNull(message = "Full Name can not be null")
+    @Size(min = 2, max = 200 ,message = "Username must be between 2 and 200 characters long")
     private String fullName;
 
     @NotNull
     @UniqueEmail
-    @Email(regexp = ".+[@].+", message = "{user.email}")
+    @Email(regexp = ".+[@].+", message = "Must be a valid email address")
     private String email;
 
-
-    @Size(min = 2, message = "{user.password.length}")
+    @Size(min = 2,  message = "Password must be at least 2 characters long")
     private String password;
 
-    @Size(min = 2, message = "{user.confirm-password.length}")
+    @Size(min = 2,  message = "Password must be at least 2 characters long")
     private String confirmPassword;
 
-    public UserRegisterBindingModel() {
-    }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public UserRegisterBindingModel setUsername(String username) {
-        this.username = username;
-        return this;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public UserRegisterBindingModel setFullName(String fullName) {
-        this.fullName = fullName;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public UserRegisterBindingModel setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public UserRegisterBindingModel setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public UserRegisterBindingModel setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-        return this;
-    }
 
     @Override
     public String toString() {

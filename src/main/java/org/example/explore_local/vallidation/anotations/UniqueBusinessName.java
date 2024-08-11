@@ -19,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = { UniqueBusinessNameValidator.class })
 public @interface UniqueBusinessName {
 
-    String message() default "{business.name.unique}";
+    String message() default "There is already registered Business with the same Business name";
 
     Class<?>[] groups() default { };
 

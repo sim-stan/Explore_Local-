@@ -11,13 +11,13 @@ public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch
     private String message;
 
     @Override
-    public void initialize (PasswordMatch constraintAnnotation) {
+    public void initialize(PasswordMatch constraintAnnotation) {
 
         this.message = constraintAnnotation.message();
     }
 
     @Override
-    public boolean isValid (UserRegisterBindingModel userRegisterBindingModel, ConstraintValidatorContext context) {
+    public boolean isValid(UserRegisterBindingModel userRegisterBindingModel, ConstraintValidatorContext context) {
 
         final String password = userRegisterBindingModel.getPassword();
         final String confirmPassword = userRegisterBindingModel.getConfirmPassword();
@@ -25,23 +25,24 @@ public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch
         if (password == null && confirmPassword == null) {
 
             return true;
-        } else {
-
-            boolean passwordMatch = password != null && password.equals(confirmPassword);
-
-            if (!passwordMatch) {
-
-                HibernateConstraintValidatorContext hibernateContext =
-                        context.unwrap(HibernateConstraintValidatorContext.class);
-
-                hibernateContext
-                        .buildConstraintViolationWithTemplate(message)
-                        .addPropertyNode("confirmPassword")
-                        .addConstraintViolation()
-                        .disableDefaultConstraintViolation();
-            }
-
-            return passwordMatch;
         }
+
+
+        boolean passwordMatch =password !=null && password.equals(confirmPassword);
+
+        if (!passwordMatch) {
+
+            HibernateConstraintValidatorContext hibernateContext =
+                    context.unwrap(HibernateConstraintValidatorContext.class);
+
+            hibernateContext
+                    .buildConstraintViolationWithTemplate(message)
+                    .addPropertyNode("confirmPassword")
+                    .addConstraintViolation()
+                    .disableDefaultConstraintViolation();
+        }
+
+        return passwordMatch;
     }
+
 }

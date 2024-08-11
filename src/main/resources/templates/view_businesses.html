@@ -28,7 +28,7 @@
             <h2 class="sm-title">No Registered Businesses </h2>
             <h3 class="lg-title">Please come back later </h3>
             <a th:method="GET"
-               th:href="@{/categories/all}"
+               th:href="@{/}"
                th:text="Back"
                type="submit" id="back-button-pages" class="btn btn-primary">Back
             </a>
@@ -38,7 +38,7 @@
                 <a th:href = "@{/businesses/business_detail/{id}(id = *{business.id})}" >
                     <img src="/images/featured-reo-de-janeiro-brazil.jpg" alt="featured place">
                     <div class="featured-item-content">
-                            <span th:text="${business.name}">
+                            <span th:text="${business.businessName}">
                                 <i class="fas fa-map-marker-alt"></i>
 
                             </span>

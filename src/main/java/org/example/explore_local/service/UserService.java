@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,6 +42,19 @@ public class UserService {
         this.userDetailsService = userDetailsService;
     }
 
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+
+    public UserProfileViewModel mapUserToProfileViewModel(User user) {
+        return modelMapper.map(user, UserProfileViewModel.class);
+
+    }
+
+
+
     public void register(UserRegisterBindingModel userRegisterBindingModel) {
 
         User user = this.modelMapper.map(userRegisterBindingModel, User.class);
@@ -59,7 +73,7 @@ public class UserService {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-        org.springframework.security.core.Authentication auth = new UsernamePasswordAuthenticationToken(
+        Authentication auth = new UsernamePasswordAuthenticationToken(
                 userDetails,
                 userDetails.getPassword(),
                 userDetails.getAuthorities()
@@ -71,9 +85,14 @@ public class UserService {
 
     }
 
-    public UserEditProfileDTO getProfileData() {
+//    public UserEditProfileDTO getProfileData(long id) {
+//        Optional<User> byId = userRepository.findById(id);
+//        return modelMapper.map(byId, UserEditProfileDTO.class);
+//    }
 
-        return modelMapper.map(userHelperService.getUser(), UserEditProfileDTO.class);
+    public UserProfileViewModel getUserProfileViewModelById(long id) {
+        Optional<User> byId = userRepository.findById(id);
+        return modelMapper.map(byId, UserProfileViewModel.class);
     }
 
     public UserProfileViewModel getProfileView() {

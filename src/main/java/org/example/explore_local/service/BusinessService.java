@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,7 +56,7 @@ public class BusinessService {
 
         if (!isUniqueEmail(business.getEmail())) {
             throw new RuntimeException("Email is taken");
-        } else if (!isUniqueName(business.getName())) {
+        } else if (!isUniqueName(business.getBusinessName())) {
             throw new RuntimeException("Business Name is taken");
         }
 
@@ -84,7 +85,7 @@ public class BusinessService {
     }
 
     public boolean isUniqueName(String name) {
-        return this.businessRepository.findByName(name).isEmpty();
+        return this.businessRepository.findByBusinessName(name).isEmpty();
     }
 
     public boolean isUniqueEmail(String email) {
@@ -114,6 +115,27 @@ public class BusinessService {
 
         return businessRepository.getAllBusinessesByCategory(name).size();
     }
+
+    public List<BusinessProfileViewModel> getAllBusinessProfileViewModel() {
+        return businessRepository.findAll()
+                .stream()
+                .map(BusinessService::mapToBusinessProfileViewModel)
+                .toList();
+    }
+    private static BusinessProfileViewModel mapToBusinessProfileViewModel(Business business) {
+        return
+                new BusinessProfileViewModel(
+                        business.getId(),
+                        business.getBusinessName(),
+                        business.getCategory(),
+                        business.getEmail(),
+                        business.getPhoneNumber(),
+                        business.getAddress(),
+                        business.getAbout());
+
+
+    }
+
 
     public void deleteBusinessById(long id) {
         businessRepository.deleteById(id);
@@ -187,4 +209,7 @@ public class BusinessService {
     }
 
 
+    public List<Business> getAllBusinesses() {
+        return businessRepository.findAll();
+    }
 }

@@ -20,13 +20,18 @@
                 <form th:action="@{/businesses/add-business}" method="post" th:object="${businessRegister}">
                     <div class="form-group">
                         <label for="businessName">Business Name</label>
-                        <input th:field="*{name}"
-
+                        <input th:field="*{businessName}"
+                               th:errorclass="'is-invalid bg-danger'"
 
                                type="text"
                                class="form-control"
                                id="businessName"
-                               name="businessName">
+                               name="name">
+
+                        <small th:each=" err : ${#fields.errors('businessName')}"
+                               th:text="${err}"
+                               class="invalid-feedback  form-text bg-danger rounded">
+                        </small>
                     </div>
 
                     <div class="form-group col-md-6 mb-3">
@@ -43,9 +48,10 @@
                             </select>
 
 
-                        <!--                        <p class="invalid-feedback errors alert alert-danger">-->
-                        <!--                            City is required.-->
-                        <!--                        </p>-->
+                        <small th:each=" err : ${#fields.errors('categoryName')}"
+                               th:text="${err}"
+                               class="invalid-feedback  form-text bg-danger rounded">
+                        </small>
                     </div>
 
                     <div class="form-group">
@@ -55,7 +61,10 @@
                                class="form-control"
                                id="email"
                                name="email">
-
+                        <small th:each=" err : ${#fields.errors('email')}"
+                               th:text="${err}"
+                               class="invalid-feedback  form-text bg-danger rounded">
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="businessPhoneNumber">Phone Number</label>
@@ -65,7 +74,10 @@
                                 class="form-control"
                                 id="businessPhoneNumber"
                                 name="businessPhoneNumber">
-
+                        <small th:each=" err : ${#fields.errors('phoneNumber')}"
+                               th:text="${err}"
+                               class="invalid-feedback  form-text bg-danger rounded">
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="businessAddress">Street Address</label>
@@ -74,27 +86,29 @@
                                class="form-control"
                                id="businessAddress"
                                name="businessAddress">
-
+                        <small th:each=" err : ${#fields.errors('address')}"
+                               th:text="${err}"
+                               class="invalid-feedback  form-text bg-danger rounded">
+                        </small>
                     </div>
 
                     <div class="form-group col-md-6 mb-3">
                         <label class="text-center text-white font-weight-bold"
                                th:for="city">City</label>
-                        <select th:field="*{cityName}"
-                                th:errorclass="is-invalid"
-                                class="form-control" id="drop-down1">
+                        <select name="cityName" class="form-control" id="drop-down1">
                             <option value="">- Select city-</option>
                             <option th:each="city: ${cities}"
+                                    th:field="*{cityName}"
                                     th:value="${city.name}"
                                     th:text="${city.name}">
 
                             </option>
 
                         </select>
-
-<!--                        <p class="invalid-feedback errors alert alert-danger">-->
-<!--                            City is required.-->
-<!--                        </p>-->
+                        <small th:each=" err : ${#fields.errors('cityName')}"
+                               th:text="${err}"
+                               class="invalid-feedback  form-text bg-danger rounded">
+                        </small>
                     </div>
 
 

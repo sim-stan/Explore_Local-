@@ -26,6 +26,16 @@ public class BusinessProfileViewModel {
     public BusinessProfileViewModel() {
     }
 
+    public BusinessProfileViewModel(long id, String name, Category category, String email, String phoneNumber, String address, String about) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.about = about;
+    }
+
     public String getName() {
         return name;
     }

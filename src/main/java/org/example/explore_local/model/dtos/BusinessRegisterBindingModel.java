@@ -1,7 +1,10 @@
 package org.example.explore_local.model.dtos;
 
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.example.explore_local.vallidation.anotations.UniqueBusinessName;
 import org.example.explore_local.vallidation.anotations.UniqueEmail;
 
@@ -10,89 +13,45 @@ import javax.validation.constraints.NotNull;
 public class  BusinessRegisterBindingModel {
 
 
-    @NotNull
+    @NotNull(message = "Business name can not be null")
     @UniqueBusinessName
-    private String name;
+    @Size(min = 2, message = "Business name must be at least 2 characters long")
+    @Column(name = "business_name")
+    private String businessName;
 
 
-    @NotNull
+    @NotNull(message = "Category can not be null")
     private String categoryName;
     @NotNull
     @UniqueEmail
+    @Email(regexp = ".+[@].+", message = "Must be a valid email address")
     private String email;
 
 
-    @NotNull
+    @NotNull(message = "Business phone number can not be null")
     private String phoneNumber;
 
-    @NotNull
+    @NotNull(message = "The address can not be null")
     private String address;
 
 
-    @NotNull
+    @NotNull(message = "City can not be null")
     private String cityName;
 
 
-    @NotBlank
+    @NotBlank(message = "About can not be null")
     private String about;
+
 
     public BusinessRegisterBindingModel() {
     }
 
-    public String getName() {
-        return name;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public BusinessRegisterBindingModel setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public BusinessRegisterBindingModel setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public BusinessRegisterBindingModel setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public BusinessRegisterBindingModel setAddress(String address) {
-        this.address = address;
-        return this;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public BusinessRegisterBindingModel setAbout(String about) {
-        this.about = about;
-        return this;
-    }
-
-
-    public String getCityName() {
-        return cityName;
-    }
-
-    public BusinessRegisterBindingModel setCityName(String cityName) {
-        this.cityName = cityName;
-        return this;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
     public String getCategoryName() {
@@ -101,5 +60,45 @@ public class  BusinessRegisterBindingModel {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }

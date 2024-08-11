@@ -18,9 +18,9 @@ public class Business {
     private long id;
 
     @Column(nullable = false, unique = true)
-    private String name;
+    private String businessName;
 
-    
+
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
@@ -67,12 +67,12 @@ public class Business {
         this.pictures=new ArrayList<>();
     }
 
-    public Business(long id, String name, Category category,
+    public Business(long id, String businessName, Category category,
                     String email, String phoneNumber, String address, City city,
                     String about, String profilePicture, User owner, List<Review> reviews,
                     List<Picture> pictures, long likes) {
         this.id = id;
-        this.name = name;
+        this.businessName = businessName;
         this.category = category;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -95,12 +95,12 @@ public class Business {
         return this;
     }
 
-    public String getName() {
-        return name;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public Business setName(String name) {
-        this.name = name;
+    public Business setBusinessName(String name) {
+        this.businessName = name;
         return this;
     }
 
@@ -203,22 +203,4 @@ public class Business {
         return this;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Business{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", category=" + category +
-//                ", email='" + email + '\'' +
-//                ", phoneNumber='" + phoneNumber + '\'' +
-//                ", address='" + address + '\'' +
-//                ", city=" + city +
-//                ", about='" + about + '\'' +
-//                ", profilePicture='" + profilePicture + '\'' +
-//                ", owner=" + owner +
-//                ", reviews=" + reviews +
-//                ", pictures=" + pictures +
-//                ", likes=" + likes +
-//                '}';
-//    }
 }
